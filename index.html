@@ -10,412 +10,211 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
 :root {
-  --pink: #ffb6d5;
-  --light-pink: #ffe1ee;
-  --purple: #a99be8;
+  --pink:#ffb6d5;
+  --light-pink:#ffe1ee;
+  --purple:#a99be8;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing:border-box; margin:0; padding:0; }
 
 body {
-  min-height: 100vh;
-  overflow-x: hidden;
-  color: white;
-  font-family: 'DM Sans', sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+  color:white;
+  font-family:'DM Sans',sans-serif;
   background:
-    radial-gradient(ellipse at 50% 0%, #41417b 0%, transparent 55%),
-    linear-gradient(160deg, #17172d, #29254c, #17172d);
+    radial-gradient(ellipse at 50% 0%,#41417b 0%,transparent 55%),
+    linear-gradient(160deg,#17172d,#29254c,#17172d);
 }
 
-header {
-  text-align: center;
-  padding: 48px 20px 22px;
-}
+header { text-align:center; padding:48px 20px 22px; }
+.eyebrow { color:var(--pink); letter-spacing:5px; font-size:12px; text-transform:uppercase; margin-bottom:16px; }
+h1 { font-family:'Playfair Display',serif; font-size:clamp(34px,7vw,62px); color:var(--light-pink); text-shadow:0 0 25px #ffb6d580; }
+.subtitle { margin-top:12px; color:#ded9f8; }
+.hero { display:flex; justify-content:center; align-items:center; gap:15px; margin:20px auto; }
+.hero-gif { width:115px; height:115px; object-fit:contain; border-radius:18px; animation:float 3s ease-in-out infinite; }
+.hero-gif:last-child { animation-delay:.5s; }
+.heart { color:var(--pink); font-size:28px; animation:pulse 1.5s infinite; }
 
-.eyebrow {
-  color: var(--pink);
-  letter-spacing: 5px;
-  font-size: 12px;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
+@keyframes float { 50% { transform:translateY(-10px); } }
+@keyframes pulse { 50% { transform:scale(1.25); } }
 
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(34px, 7vw, 62px);
-  color: var(--light-pink);
-  text-shadow: 0 0 25px #ffb6d580;
-}
-
-.subtitle {
-  margin-top: 12px;
-  color: #ded9f8;
-}
-
-.hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  margin: 20px auto;
-}
-
-.penguin {
-  font-size: 58px;
-  animation: float 3s ease-in-out infinite;
-}
-
-.hero-gif {
-  width: 115px;
-  height: 115px;
-  object-fit: contain;
-  border-radius: 18px;
-  animation: float 3s ease-in-out infinite;
-}
-
-.hero-gif:last-child {
-  animation-delay: .5s;
-}
-
-.penguin:last-child {
-  animation-delay: .5s;
-}
-
-.heart {
-  color: var(--pink);
-  font-size: 28px;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes float {
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes pulse {
-  50% { transform: scale(1.25); }
-}
-
-.intro {
-  max-width: 650px;
-  margin: auto;
-  padding: 0 15px;
-  color: #e4defb;
-  line-height: 1.8;
-}
-
-main {
-  max-width: 760px;
-  margin: 24px auto 0;
-  padding: 20px;
-}
-
-.section-title {
-  text-align: center;
-  font: 600 28px 'Playfair Display', serif;
-  color: var(--pink);
-  margin-bottom: 10px;
-}
-
-.instruction {
-  text-align: center;
-  color: #d9d3f2;
-  font-size: 14px;
-  margin-bottom: 22px;
-}
-
-.counter {
-  text-align: center;
-  color: #f3d5e5;
-  font-weight: 700;
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-}
-
-.progress {
-  height: 6px;
-  max-width: 440px;
-  margin: 0 auto 22px;
-  background: #ffffff20;
-  border-radius: 99px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  width: 4%;
-  background: linear-gradient(90deg, var(--pink), var(--purple));
-  border-radius: 99px;
-  transition: width .35s ease;
-}
-
-.stage {
-  perspective: 1200px;
-  max-width: 440px;
-  margin: 0 auto;
-}
+.intro { max-width:650px; margin:auto; padding:0 15px; color:#e4defb; line-height:1.8; }
+main { max-width:760px; margin:24px auto 0; padding:20px; }
+.section-title { text-align:center; font:600 28px 'Playfair Display',serif; color:var(--pink); margin-bottom:10px; }
+.instruction { text-align:center; color:#d9d3f2; font-size:14px; margin-bottom:22px; }
+.counter { text-align:center; color:#f3d5e5; font-weight:700; letter-spacing:2px; margin-bottom:12px; }
+.progress { height:6px; max-width:440px; margin:0 auto 22px; background:#ffffff20; border-radius:99px; overflow:hidden; }
+.progress-fill { height:100%; width:4%; background:linear-gradient(90deg,var(--pink),var(--purple)); border-radius:99px; transition:width .35s ease; }
+.stage { perspective:1200px; max-width:440px; margin:0 auto; }
 
 .flip-card {
-  width: 100%;
-  height: 500px;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform .75s cubic-bezier(.2,.75,.25,1);
-  cursor: pointer;
-  outline: none;
+  width:100%; height:500px; position:relative;
+  transform-style:preserve-3d;
+  transition:transform .75s cubic-bezier(.2,.75,.25,1);
+  cursor:pointer; outline:none;
 }
-
-.flip-card.flipped {
-  transform: rotateY(-180deg);
-}
-
-.flip-card:focus-visible .face {
-  outline: 3px solid var(--pink);
-  outline-offset: 5px;
-}
+.flip-card.flipped { transform:rotateY(-180deg); }
+.flip-card:focus-visible .face { outline:3px solid var(--pink); outline-offset:5px; }
 
 .face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  border: 1px solid #ffffff35;
-  border-radius: 26px;
-  background: linear-gradient(145deg,#ffffff1c,#ffffff09);
-  box-shadow: 0 18px 55px #08081766;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  text-align: center;
+  position:absolute; inset:0; backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  border:1px solid #ffffff35; border-radius:26px;
+  background:linear-gradient(145deg,#ffffff1c,#ffffff09);
+  box-shadow:0 18px 55px #08081766; overflow:hidden;
+  display:flex; flex-direction:column; align-items:center;
+  justify-content:center; padding:24px; text-align:center;
 }
-
-.front {
-  gap: 16px;
-}
-
+.front { gap:16px; }
 .gif-wrap {
-  width: 100%;
-  max-width: 320px;
-  aspect-ratio: 1 / 1;
-  height: auto;
-  flex: 0 0 auto;
-  border-radius: 18px;
-  overflow: hidden;
-  background: linear-gradient(135deg,#49467e,#8d80bd);
-  display: grid;
-  place-items: center;
-  position: relative;
+  width:100%; max-width:320px; aspect-ratio:1/1;
+  height:auto; flex:0 0 auto; border-radius:18px;
+  overflow:hidden; background:linear-gradient(135deg,#49467e,#8d80bd);
+  display:grid; place-items:center; position:relative;
 }
-
-.gif-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.gif-fallback {
-  font-size: 95px;
-  filter: drop-shadow(0 8px 12px #17172d66);
-}
-
-.tap-hint {
-  color: #f8dceb;
-  font-size: 14px;
-}
-
-.tap-hint span {
-  display: inline-block;
-  margin-left: 5px;
-  animation: pulse 1.5s infinite;
-}
-
-.back {
-  transform: rotateY(-180deg);
-  background: radial-gradient(circle at top,#5b518b,#292747 70%);
-  justify-content: center;
-}
-
+.gif-wrap img { width:100%; height:100%; object-fit:contain; }
+.gif-fallback { font-size:95px; filter:drop-shadow(0 8px 12px #17172d66); }
+.tap-hint { color:#f8dceb; font-size:14px; }
+.tap-hint span { display:inline-block; margin-left:5px; animation:pulse 1.5s infinite; }
+.back { transform:rotateY(-180deg); background:radial-gradient(circle at top,#5b518b,#292747 70%); justify-content:center; }
 .back .number {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg,var(--pink),var(--purple));
-  color: #29203d;
-  font-weight: 700;
-  font-size: 20px;
-  margin-bottom: 24px;
+  width:48px; height:48px; border-radius:50%; display:grid;
+  place-items:center; background:linear-gradient(135deg,var(--pink),var(--purple));
+  color:#29203d; font-weight:700; font-size:20px; margin-bottom:24px;
 }
-
-.number {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--pink);
-}
-
-.reason {
-  font: 600 clamp(22px,4vw,29px)/1.5 'Playfair Display',serif;
-  color: #fff1f8;
-  max-width: 340px;
-}
-
-.back-note {
-  color: #d9cdec;
-  font-size: 13px;
-  margin-top: 25px;
-}
-
-.navigation {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  margin: 25px auto 0;
-}
-
+.number { font-size:20px; font-weight:700; color:var(--pink); }
+.reason { font:600 clamp(22px,4vw,29px)/1.5 'Playfair Display',serif; color:#fff1f8; max-width:340px; }
+.back-note { color:#d9cdec; font-size:13px; margin-top:25px; }
+.navigation { display:flex; justify-content:center; align-items:center; gap:18px; margin:25px auto 0; }
 .nav-btn {
-  border: 1px solid #ffffff45;
-  background: #ffffff12;
-  color: white;
-  padding: 12px 21px;
-  border-radius: 999px;
-  font: 600 14px 'DM Sans',sans-serif;
-  cursor: pointer;
-  transition: .2s;
+  border:1px solid #ffffff45; background:#ffffff12; color:white;
+  padding:12px 21px; border-radius:999px;
+  font:600 14px 'DM Sans',sans-serif; cursor:pointer; transition:.2s;
 }
+.nav-btn:hover:not(:disabled) { background:#ffb6d533; border-color:var(--pink); transform:translateY(-2px); }
+.nav-btn:disabled { opacity:.35; cursor:not-allowed; }
+.nav-dots { display:flex; justify-content:center; gap:7px; flex-wrap:wrap; max-width:350px; margin:18px auto 0; }
+.dot { width:8px; height:8px; border:0; border-radius:50%; background:#ffffff45; cursor:pointer; transition:.2s; }
+.dot.active { background:var(--pink); transform:scale(1.4); }
 
-.nav-btn:hover:not(:disabled) {
-  background: #ffb6d533;
-  border-color: var(--pink);
-  transform: translateY(-2px);
-}
-
-.nav-btn:disabled {
-  opacity: .35;
-  cursor: not-allowed;
-}
-
-.nav-dots {
-  display: flex;
-  justify-content: center;
-  gap: 7px;
-  flex-wrap: wrap;
-  max-width: 350px;
-  margin: 18px auto 0;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border: 0;
-  border-radius: 50%;
-  background: #ffffff45;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.dot.active {
-  background: var(--pink);
-  transform: scale(1.4);
-}
-
-footer {
-  text-align: center;
-  padding: 55px 20px 45px;
-}
-
-footer h2 {
-  font: 600 34px 'Playfair Display',serif;
-  color: var(--pink);
-  margin-bottom: 16px;
-}
-
-footer p {
-  color: #e4defb;
-  line-height: 1.8;
-  max-width: 600px;
-  margin: auto;
-}
-
-.signature {
-  color: var(--pink);
-  font-size: 20px;
-  margin-top: 22px;
-}
-
-.final-heart {
-  font-size: 46px;
-  margin-top: 18px;
-  animation: pulse 1.5s infinite;
-}
-
+footer { text-align:center; padding:55px 20px 45px; }
+footer h2 { font:600 34px 'Playfair Display',serif; color:var(--pink); margin-bottom:16px; }
+footer p { color:#e4defb; line-height:1.8; max-width:600px; margin:auto; }
+.signature { color:var(--pink); font-size:20px; margin-top:22px; }
+.final-heart { font-size:46px; margin-top:18px; animation:pulse 1.5s infinite; }
 .floating-heart {
-  position: fixed;
-  bottom: -30px;
-  color: var(--pink);
-  opacity: .6;
-  pointer-events: none;
-  animation: rise 8s linear forwards;
-  z-index: -1;
+  position:fixed; bottom:-30px; color:var(--pink); opacity:.6;
+  pointer-events:none; animation:rise 8s linear forwards; z-index:-1;
 }
+@keyframes rise { to { transform:translateY(-110vh) rotate(360deg); opacity:0; } }
+@keyframes slideNext { from { opacity:.35; transform:translateX(35px) scale(.98); } to { opacity:1; transform:translateX(0) scale(1); } }
+@keyframes slidePrev { from { opacity:.35; transform:translateX(-35px) scale(.98); } to { opacity:1; transform:translateX(0) scale(1); } }
+.flip-card.animate-next { animation:slideNext .35s ease; }
+.flip-card.animate-prev { animation:slidePrev .35s ease; }
 
-@keyframes rise {
-  to {
-    transform: translateY(-110vh) rotate(360deg);
-    opacity: 0;
-  }
+.date-night { max-width:760px; margin:30px auto 70px; padding:20px; text-align:center; }
+.date-night h2 { font:600 clamp(27px,5vw,36px) 'Playfair Display',serif; color:var(--pink); margin-bottom:12px; }
+.date-subtitle { color:#ded9f8; margin-bottom:28px; line-height:1.7; }
+.date-stage { perspective:1200px; max-width:460px; margin:auto; }
+.date-card { position:relative; width:100%; min-height:650px; transform-style:preserve-3d; transition:transform .8s ease; }
+.date-card.flipped { transform:rotateY(-180deg); }
+.date-face {
+  position:absolute; inset:0; width:100%; min-height:650px;
+  backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  border:1px solid #ffffff45; border-radius:24px;
+  background:linear-gradient(145deg,#ffffff1c,#ffffff09);
+  box-shadow:0 18px 55px #08081766; overflow-y:auto; padding:25px;
 }
+.date-back { transform:rotateY(180deg); }
+.date-result-gif {
+  display:block; width:100%; max-width:250px; aspect-ratio:1/1;
+  object-fit:contain; margin:20px auto; border-radius:18px; background:#ffffff0d;
+}
+.date-buttons { width:100%; display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.date-choice {
+  border:1px solid #ffffff50; border-radius:16px; padding:17px 10px;
+  background:#ffffff12; color:white; font:600 14px 'DM Sans',sans-serif;
+  cursor:pointer; transition:.25s;
+}
+.date-choice:hover { background:#ffb6d533; border-color:var(--pink); transform:translateY(-3px); }
+.date-choice span { display:block; font-size:29px; margin-bottom:8px; }
+.game-options { display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; }
+.game-options .date-choice:last-child { grid-column:1/-1; }
+.date-message { color:#fff1f8; font:600 21px/1.5 'Playfair Display',serif; max-width:350px; margin:auto; }
+.date-back-button {
+  border:1px solid #ffffff45; background:#ffffff12; color:white;
+  padding:11px 23px; border-radius:999px;
+  font:600 14px 'DM Sans',sans-serif; cursor:pointer; margin-top:5px; transition:.2s;
+}
+.date-back-button:hover { border-color:var(--pink); background:#ffb6d533; }
+.date-decoration { color:var(--pink); font-size:30px; }
+.date-hero-gifs { display:flex; justify-content:center; align-items:center; gap:12px; margin-top:12px; }
+.date-hero-gifs img { width:75px; height:75px; object-fit:contain; border-radius:12px; animation:float 3s ease-in-out infinite; }
+.date-hero-gifs img:last-child { animation-delay:.5s; }
+.date-hero-gifs span { color:var(--pink); font-size:27px; animation:pulse 1.5s infinite; }
+.copyright { text-align:center; color:#bdb4d9; font-size:11px; line-height:1.8; opacity:.8; padding:15px 20px 25px; }
 
-@keyframes slideNext {
-  from {
-    opacity: .35;
-    transform: translateX(35px) scale(.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
-}
+/* LEFT SIDE MENU */
 
-@keyframes slidePrev {
-  from {
-    opacity: .35;
-    transform: translateX(-35px) scale(.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
+.menu-toggle {
+  position:fixed; top:22px; left:22px; z-index:1002;
+  width:48px; height:48px; border:1px solid #ffffff45;
+  border-radius:14px; background:#29254ccc; backdrop-filter:blur(12px);
+  display:flex; flex-direction:column; justify-content:center;
+  align-items:center; gap:6px; cursor:pointer; box-shadow:0 8px 25px #08081755;
 }
-
-.flip-card.animate-next {
-  animation: slideNext .35s ease;
+.menu-toggle span { display:block; width:21px; height:2px; border-radius:5px; background:var(--light-pink); transition:.25s; }
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity:0; }
+.menu-toggle[aria-expanded="true"] span:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+.menu-overlay { position:fixed; inset:0; z-index:1000; background:#09081799; opacity:0; visibility:hidden; transition:.3s; }
+.menu-overlay.visible { opacity:1; visibility:visible; }
+.side-panel {
+  position:fixed; top:0; left:0; z-index:1001;
+  width:min(360px,88vw); height:100vh; padding:90px 24px 28px;
+  overflow-y:auto; background:linear-gradient(160deg,#302b55,#19182f);
+  border-right:1px solid #ffffff30; box-shadow:18px 0 50px #08081766;
+  transform:translateX(-105%); transition:transform .35s ease;
 }
-
-.flip-card.animate-prev {
-  animation: slidePrev .35s ease;
+.side-panel.open { transform:translateX(0); }
+.side-panel h2 { color:var(--pink); font:600 27px 'Playfair Display',serif; margin-bottom:10px; }
+.side-panel > p { color:#ded9f8; font-size:14px; line-height:1.7; margin-bottom:24px; }
+.panel-tab {
+  width:100%; padding:14px 16px; margin-bottom:10px;
+  border:1px solid #ffffff45; border-radius:13px;
+  color:white; background:#ffffff12; text-align:left;
+  font:600 15px 'DM Sans',sans-serif; cursor:pointer;
 }
+.panel-tab:hover { border-color:var(--pink); background:#ffb6d522; }
+.panel-tab span { float:right; }
+.panel-content { display:none; margin:0 0 18px; }
+.panel-content.visible { display:block; }
+.credit-group { margin:18px 0; }
+.credit-group h3 { color:var(--light-pink); font-size:13px; letter-spacing:1px; text-transform:uppercase; margin-bottom:9px; }
+.credit-group a {
+  display:block; color:#ded9f8; font-size:13px; line-height:1.5;
+  padding:7px 0; border-bottom:1px solid #ffffff18;
+  overflow-wrap:anywhere; text-decoration:none;
+}
+.credit-group a:hover { color:var(--pink); }
+.credit-note { color:#aaa2cb; font-size:11px; margin-top:16px; line-height:1.6; }
 
 @media(max-width:500px) {
-  header { padding-top: 35px; }
-  .penguin { font-size: 46px; }
-  main { padding: 14px; }
-  .flip-card { height: 440px; }
-  .gif-wrap { max-width: 290px; }
-  .face { padding: 18px; }
-  .nav-btn { padding: 11px 17px; }
-
-  .hero-gif {
-    width: 90px;
-    height: 90px;
-  }
+  header { padding-top:60px; }
+  main { padding:14px; }
+  .flip-card { height:440px; }
+  .gif-wrap { max-width:290px; }
+  .face { padding:18px; }
+  .nav-btn { padding:11px 17px; }
+  .hero-gif { width:90px; height:90px; }
+  .date-night { padding:14px; }
+  .date-face { padding:22px 15px; }
+  .date-choice { font-size:12px; padding:14px 7px; }
+  .date-message { font-size:19px; }
+  .date-hero-gifs img { width:65px; height:65px; }
+  .menu-toggle { top:14px; left:14px; }
+  .side-panel { padding-top:78px; }
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -425,238 +224,52 @@ footer p {
     transition-duration:.01ms!important;
   }
 }
-
-/* DATE NIGHT SECTION */
-
-.date-night {
-  max-width: 760px;
-  margin: 30px auto 70px;
-  padding: 20px;
-  text-align: center;
-}
-
-.date-night h2 {
-  font: 600 clamp(27px, 5vw, 36px) 'Playfair Display', serif;
-  color: var(--pink);
-  margin-bottom: 12px;
-}
-
-.date-subtitle {
-  color: #ded9f8;
-  margin-bottom: 28px;
-  line-height: 1.7;
-}
-
-.date-stage {
-  perspective: 1200px;
-  max-width: 460px;
-  margin: auto;
-}
-
-.date-card {
-  position: relative;
-  width: 100%;
-  min-height: 650px;
-  transform-style: preserve-3d;
-  transition: transform 0.8s ease;
-}
-
-.date-card.flipped {
-  transform: rotateY(-180deg);
-}
-
-.date-face {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  min-height: 650px;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  border: 1px solid #ffffff45;
-  border-radius: 24px;
-  background: linear-gradient(145deg, #ffffff1c, #ffffff09);
-  box-shadow: 0 18px 55px #08081766;
-  overflow-y: auto;
-  padding: 25px;
-  box-sizing: border-box;
-}
-
-.date-back {
-  transform: rotateY(180deg);
-}
-
-.date-result-gif {
-  display: block;
-  width: 100%;
-  max-width: 340px;
-  height: auto;
-  margin: 20px auto;
-  border-radius: 16px;
-  object-fit: contain;
-}
-
-.date-buttons {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.date-choice {
-  border: 1px solid #ffffff50;
-  border-radius: 16px;
-  padding: 17px 10px;
-  background: #ffffff12;
-  color: white;
-  font: 600 14px 'DM Sans',sans-serif;
-  cursor: pointer;
-  transition: .25s;
-}
-
-.date-choice:hover {
-  background: #ffb6d533;
-  border-color: var(--pink);
-  transform: translateY(-3px);
-}
-
-.date-choice span {
-  display: block;
-  font-size: 29px;
-  margin-bottom: 8px;
-}
-
-.game-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  width: 100%;
-}
-
-.game-options .date-choice:last-child {
-  grid-column: 1 / -1;
-}
-
-.date-result-gif {
-  width: 100%;
-  max-width: 250px;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  border-radius: 18px;
-  background: #ffffff0d;
-}
-
-.date-message {
-  color: #fff1f8;
-  font: 600 21px/1.5 'Playfair Display',serif;
-  max-width: 350px;
-}
-
-.date-back-button {
-  border: 1px solid #ffffff45;
-  background: #ffffff12;
-  color: white;
-  padding: 11px 23px;
-  border-radius: 999px;
-  font: 600 14px 'DM Sans',sans-serif;
-  cursor: pointer;
-  margin-top: 5px;
-  transition: .2s;
-}
-
-.date-back-button:hover {
-  border-color: var(--pink);
-  background: #ffb6d533;
-}
-
-.date-decoration {
-  color: var(--pink);
-  font-size: 30px;
-}
-
-.date-hero-gifs {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-top: 12px;
-}
-
-.date-hero-gifs img {
-  width: 75px;
-  height: 75px;
-  object-fit: contain;
-  border-radius: 12px;
-  animation: float 3s ease-in-out infinite;
-}
-
-.date-hero-gifs img:last-child {
-  animation-delay: .5s;
-}
-
-.date-hero-gifs span {
-  color: var(--pink);
-  font-size: 27px;
-  animation: pulse 1.5s infinite;
-}
-
-.copyright {
-  text-align: center;
-  color: #bdb4d9;
-  font-size: 11px;
-  line-height: 1.8;
-  opacity: 0.8;
-  padding: 15px 20px 25px;
-}
-
-@media(max-width:500px) {
-  .date-night {
-    padding: 14px;
-  }
-
-  .date-face {
-    padding: 22px 15px;
-  }
-
-  .date-choice {
-    font-size: 12px;
-    padding: 14px 7px;
-  }
-
-  .date-message {
-    font-size: 19px;
-  }
-
-  .date-hero-gifs img {
-    width: 65px;
-    height: 65px;
-  }
-}
 </style>
 </head>
 
 <body>
 
+<button class="menu-toggle" id="menuToggle" type="button"
+        aria-label="Open menu" aria-expanded="false" aria-controls="sidePanel">
+  <span></span><span></span><span></span>
+</button>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<aside class="side-panel" id="sidePanel" aria-label="Side menu">
+  <h2>A little extra ♡</h2>
+  <p>A tiny collection of things that went into making this for you.</p>
+
+  <button class="panel-tab" id="gifsTab" type="button" aria-expanded="false">
+    ♡ GIFs <span>＋</span>
+  </button>
+  <div class="panel-content" id="gifsContent">
+    <div class="credit-group"><h3>Penguin GIFs</h3><div id="heroCredits"></div></div>
+    <div class="credit-group"><h3>The 25 reasons</h3><div id="reasonCredits"></div></div>
+    <div class="credit-group"><h3>Date night GIFs</h3><div id="dateCredits"></div></div>
+    <p class="credit-note">All GIFs belong to their respective creators and owners.</p>
+  </div>
+
+  <button class="panel-tab" id="linksTab" type="button" aria-expanded="false">
+    ♡ Links <span>＋</span>
+  </button>
+  <div class="panel-content" id="linksContent">
+    <div class="credit-group">
+      <h3>Learning resources</h3>
+      <div id="learningCredits"></div>
+    </div>
+  </div>
+</aside>
+
 <header>
   <div class="eyebrow">A little something for my Pagu Pagusons ♡</div>
-
   <h1>25 Reasons Why I Love You</h1>
-
-  <p class="subtitle">
-    Because one reason could never be enough.
-  </p>
+  <p class="subtitle">Because one reason could never be enough.</p>
 
   <div class="hero">
-    <img
-      class="hero-gif"
-      src="https://media.giphy.com/media/fhvedUSbRFQ7LRbkT0/giphy.gif"
-      alt="Pudgy Penguin 1">
-
+    <img class="hero-gif" src="https://media.giphy.com/media/fhvedUSbRFQ7LRbkT0/giphy.gif" alt="Pudgy Penguin 1">
     <span class="heart">♥</span>
-
-    <img
-      class="hero-gif"
-      src="https://media.giphy.com/media/VJDaueNiwFqKHv6xXz/giphy.gif"
-      alt="Pudgy Penguin 2">
+    <img class="hero-gif" src="https://media.giphy.com/media/VJDaueNiwFqKHv6xXz/giphy.gif" alt="Pudgy Penguin 2">
   </div>
 
   <p class="intro">
@@ -667,68 +280,38 @@ footer p {
 </header>
 
 <main>
-  <h2 class="section-title">
-    A little love, one card at a time ♡
-  </h2>
-
-  <p class="instruction">
-    Tap the middle of the card to turn it over and reveal your reason.
-  </p>
-
+  <h2 class="section-title">A little love, one card at a time ♡</h2>
+  <p class="instruction">Tap the middle of the card to turn it over and reveal your reason.</p>
   <div class="counter" id="counter">01 / 25</div>
-
-  <div class="progress">
-    <div class="progress-fill" id="progress"></div>
-  </div>
+  <div class="progress"><div class="progress-fill" id="progress"></div></div>
 
   <div class="stage">
-    <div class="flip-card" id="flipCard"
-         role="button" tabindex="0"
-         aria-label="Flip the card to reveal reason 1">
-
+    <div class="flip-card" id="flipCard" role="button" tabindex="0" aria-label="Flip the card to reveal reason 1">
       <div class="face front">
         <div class="number" id="frontNumber">01</div>
-
         <div class="gif-wrap">
           <img id="penguinGif" src="" alt="Pudgy Penguin GIF">
           <div class="gif-fallback" id="gifFallback">🐧💕</div>
         </div>
-
-        <div class="tap-hint">
-          A little penguin surprise <span>♡</span>
-          <br>Tap to reveal
-        </div>
+        <div class="tap-hint">A little penguin surprise <span>♡</span><br>Tap to reveal</div>
       </div>
-
       <div class="face back">
         <div class="number" id="backNumber">01</div>
         <p class="reason" id="reasonText"></p>
-
-        <p class="back-note">
-          One of the many reasons I love you ♡
-        </p>
+        <p class="back-note">One of the many reasons I love you ♡</p>
       </div>
     </div>
   </div>
 
   <div class="navigation">
-    <button class="nav-btn" id="prevBtn" type="button">
-      ← Previous
-    </button>
-
-    <button class="nav-btn" id="nextBtn" type="button">
-      Next →
-    </button>
+    <button class="nav-btn" id="prevBtn" type="button">← Previous</button>
+    <button class="nav-btn" id="nextBtn" type="button">Next →</button>
   </div>
-
-  <div class="nav-dots" id="dots"
-       aria-label="Choose a reason"></div>
+  <div class="nav-dots" id="dots" aria-label="Choose a reason"></div>
 </main>
 
 <section class="date-night">
-
   <h2>How do you want to spend this date night? ♡</h2>
-
   <p class="date-subtitle">
     Pick your favourite, or let me decide for us.
     Whatever we do, I just want to spend time with you.
@@ -736,70 +319,35 @@ footer p {
 
   <div class="date-stage">
     <div class="date-card" id="dateCard">
-
       <div class="date-face date-front">
         <div class="date-decoration">♡</div>
-
         <h2>Tonight's plans?</h2>
-
-        <p class="date-subtitle">
-          What are we in the mood for?
-        </p>
+        <p class="date-subtitle">What are we in the mood for?</p>
 
         <div class="date-buttons">
-
-          <button type="button" class="date-choice" data-date="games">
-            <span>🎮</span>
-            Play games together
-          </button>
-
-          <button type="button" class="date-choice" data-date="show">
-            <span>📺</span>
-            Show time
-          </button>
-
-          <button type="button" class="date-choice" data-date="movie">
-            <span>🍿</span>
-            Movie time
-          </button>
-
-          <button type="button" class="date-choice" data-date="surprise">
-            <span>💗</span>
-            Surprise me!
-          </button>
-
+          <button type="button" class="date-choice" data-date="games"><span>🎮</span>Play games together</button>
+          <button type="button" class="date-choice" data-date="show"><span>📺</span>Show time</button>
+          <button type="button" class="date-choice" data-date="movie"><span>🍿</span>Movie time</button>
+          <button type="button" class="date-choice" data-date="surprise"><span>💗</span>Surprise me!</button>
         </div>
 
         <div class="date-hero-gifs">
-          <img
-            src="https://media.giphy.com/media/fhvedUSbRFQ7LRbkT0/giphy.gif"
-            alt="Pudgy Penguin">
-
+          <img src="https://media.giphy.com/media/fhvedUSbRFQ7LRbkT0/giphy.gif" alt="Pudgy Penguin">
           <span>♥</span>
-
-          <img
-            src="https://media.giphy.com/media/VJDaueNiwFqKHv6xXz/giphy.gif"
-            alt="Pudgy Penguin">
+          <img src="https://media.giphy.com/media/VJDaueNiwFqKHv6xXz/giphy.gif" alt="Pudgy Penguin">
         </div>
-
       </div>
 
       <div class="date-face date-back" id="dateBack">
         <div id="dateContent"></div>
-
-        <button type="button" class="date-back-button" id="dateBackButton">
-          ← Back to date night options
-        </button>
+        <button type="button" class="date-back-button" id="dateBackButton">← Back to date night options</button>
       </div>
-
     </div>
   </div>
-
 </section>
 
 <footer>
   <h2>And one more thing...</h2>
-
   <p>
     Out of all the people in this world, I'm so glad
     I get to know you, love you, and share my life with you.
@@ -810,18 +358,14 @@ footer p {
     These are only 25 reasons out of an endless list.
     I hope you never forget how loved you are.
   </p>
-
   <div class="signature">Forever your pagu ♡</div>
-
   <div class="final-heart">♥</div>
 </footer>
 
 <div class="copyright">
   © 2026 veraamariaa. All rights reserved.
-  <br>
-  Original website design, layout and written content.
-  <br>
-  Third-party images and GIFs belong to their respective owners.
+  <br>Original website design, layout and written content.
+  <br>Third-party images and GIFs belong to their respective owners.
 </div>
 
 <script>
@@ -886,6 +430,17 @@ const gifs = [
   ""
 ];
 
+const showGif =
+  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWFwcm5mbGE2emxqcDhpZjRlNzVmdGVyZGp5enczbGdzZTBoMG0xdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/kJskc34OUQm0nFsCi8/giphy.gif";
+
+const movieGif =
+  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmJvd2E5dDByaGV0OXc0N3B6cjc5a2FoazY2b3RpM3Q1NDcydGpxZSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/whG6tVn1h8zP06DXIJ/giphy.gif";
+
+const gamingGif =
+  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdm1tcDE1MG55bHNlY3B6Nml1dnQzZXM5YXphbXJ5aXpuaTl0bTJubSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/16H2bpS7uX8hBpeSKS/giphy.gif";
+
+// CARD ELEMENTS
+
 let current = 0;
 
 const card = document.getElementById("flipCard");
@@ -919,10 +474,7 @@ function showReason(index, direction = 1) {
   current = Math.max(0, Math.min(reasons.length - 1, index));
 
   card.classList.remove("flipped", "animate-next", "animate-prev");
-
-  card.classList.add(
-    direction >= 0 ? "animate-next" : "animate-prev"
-  );
+  card.classList.add(direction >= 0 ? "animate-next" : "animate-prev");
 
   document.getElementById("frontNumber").textContent =
     String(current + 1).padStart(2, "0");
@@ -942,8 +494,6 @@ function showReason(index, direction = 1) {
 
   progress.style.width =
     `${((current + 1) / reasons.length) * 100}%`;
-
-  // LOAD GIF
 
   const gifUrl = gifs[current];
 
@@ -966,20 +516,12 @@ function showReason(index, direction = 1) {
     gif.removeAttribute("src");
   }
 
-  // NAVIGATION BUTTONS
-
   prevBtn.disabled = current === 0;
   nextBtn.disabled = current === reasons.length - 1;
 
-  // PROGRESS DOTS
-
   [...dots.children].forEach((dot, i) => {
     dot.classList.toggle("active", i === current);
-
-    dot.setAttribute(
-      "aria-current",
-      i === current ? "step" : "false"
-    );
+    dot.setAttribute("aria-current", i === current ? "step" : "false");
   });
 }
 
@@ -990,11 +532,7 @@ reasons.forEach((_, index) => {
 
   dot.className = "dot";
   dot.type = "button";
-
-  dot.setAttribute(
-    "aria-label",
-    `Go to reason ${index + 1}`
-  );
+  dot.setAttribute("aria-label", `Go to reason ${index + 1}`);
 
   dot.addEventListener("click", () => {
     showReason(index, index >= current ? 1 : -1);
@@ -1005,26 +543,138 @@ reasons.forEach((_, index) => {
 
 // PREVIOUS AND NEXT
 
-prevBtn.addEventListener("click", () => {
-  showReason(current - 1, -1);
-});
-
-nextBtn.addEventListener("click", () => {
-  showReason(current + 1, 1);
-});
+prevBtn.addEventListener("click", () => showReason(current - 1, -1));
+nextBtn.addEventListener("click", () => showReason(current + 1, 1));
 
 // KEYBOARD NAVIGATION
 
 document.addEventListener("keydown", event => {
-  if (event.key === "ArrowRight") {
-    showReason(current + 1, 1);
-  }
+  if (event.key === "ArrowRight") showReason(current + 1, 1);
+  if (event.key === "ArrowLeft") showReason(current - 1, -1);
+});
 
-  if (event.key === "ArrowLeft") {
-    showReason(current - 1, -1);
+// SIDE MENU
+
+const menuToggle = document.getElementById("menuToggle");
+const sidePanel = document.getElementById("sidePanel");
+const menuOverlay = document.getElementById("menuOverlay");
+
+function setMenuOpen(open) {
+  sidePanel.classList.toggle("open", open);
+  menuOverlay.classList.toggle("visible", open);
+  menuToggle.setAttribute("aria-expanded", String(open));
+  menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+}
+
+menuToggle.addEventListener("click", () => {
+  setMenuOpen(!sidePanel.classList.contains("open"));
+});
+
+menuOverlay.addEventListener("click", () => setMenuOpen(false));
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") setMenuOpen(false);
+});
+
+// INDEPENDENT GIFS AND LINKS TABS
+
+const gifsTab = document.getElementById("gifsTab");
+const gifsContent = document.getElementById("gifsContent");
+const linksTab = document.getElementById("linksTab");
+const linksContent = document.getElementById("linksContent");
+
+function togglePanelTab(tab, content, otherTab, otherContent) {
+  const open = !content.classList.contains("visible");
+
+  content.classList.toggle("visible", open);
+  tab.setAttribute("aria-expanded", String(open));
+  tab.querySelector("span").textContent = open ? "−" : "＋";
+
+  // Close the other category when opening this one.
+  if (open) {
+    otherContent.classList.remove("visible");
+    otherTab.setAttribute("aria-expanded", "false");
+    otherTab.querySelector("span").textContent = "＋";
+  }
+}
+
+gifsTab.addEventListener("click", () => {
+  togglePanelTab(gifsTab, gifsContent, linksTab, linksContent);
+});
+
+linksTab.addEventListener("click", () => {
+  togglePanelTab(linksTab, linksContent, gifsTab, gifsContent);
+});
+
+// CREATE LINKS IN THE SIDE PANEL
+
+function addCreditLink(container, label, url) {
+  if (!url) return;
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.textContent = label;
+
+  container.appendChild(link);
+}
+
+// GIF CREDIT LINKS
+
+const heroCredits = document.getElementById("heroCredits");
+const reasonCredits = document.getElementById("reasonCredits");
+const dateCredits = document.getElementById("dateCredits");
+
+addCreditLink(
+  heroCredits,
+  "Header Penguin GIF 1",
+  "https://media.giphy.com/media/fhvedUSbRFQ7LRbkT0/giphy.gif"
+);
+
+addCreditLink(
+  heroCredits,
+  "Header Penguin GIF 2",
+  "https://media.giphy.com/media/VJDaueNiwFqKHv6xXz/giphy.gif"
+);
+
+gifs.forEach((url, index) => {
+  if (url) {
+    addCreditLink(reasonCredits, `Reason ${index + 1} GIF`, url);
   }
 });
 
+addCreditLink(dateCredits, "Gaming GIF", gamingGif);
+addCreditLink(dateCredits, "Show time GIF", showGif);
+addCreditLink(dateCredits, "Movie time GIF", movieGif);
+
+// LEARNING LINKS — KEPT SEPARATE FROM GIFS
+
+const learningCredits = document.getElementById("learningCredits");
+
+addCreditLink(
+  learningCredits,
+  "freeCodeCamp — Main website",
+  "https://www.freecodecamp.org/"
+);
+
+addCreditLink(
+  learningCredits,
+  "HTML — Responsive Web Design",
+  "https://www.freecodecamp.org/learn/responsive-web-design-v9/"
+);
+
+addCreditLink(
+  learningCredits,
+  "CSS — Responsive Web Design",
+  "https://www.freecodecamp.org/learn/responsive-web-design-v9/"
+);
+
+addCreditLink(
+  learningCredits,
+  "JavaScript — JavaScript Certification",
+  "https://www.freecodecamp.org/learn/javascript-v9/"
+);
 
 // DATE NIGHT INTERACTIVE MENU
 
@@ -1040,15 +690,6 @@ const gameOptions = [
 ];
 
 const dateActivities = ["games", "show", "movie"];
-
-const showGif =
-  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWFwcm5mbGE2emxqcDhpZjRlNzVmdGVyZGp5enczbGdzZTBoMG0xdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/kJskc34OUQm0nFsCi8/giphy.gif";
-
-const movieGif =
-  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmJvd2E5dTByaGV0OXc0N3B6cjc5a2FoazY2b3RpM3Q1NDcydGpxZSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/whG6tVn1h8zP06DXIJ/giphy.gif";
-
-const gamingGif =
-  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdm1tcDE1MG55bHNlY3B6Nml1dnQzZXM5YXphbXJ5aXpuaTl0bTJubSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/16H2bpS7uX8hBpeSKS/giphy.gif";
 
 // FLIP THE DATE-NIGHT CARD
 
@@ -1093,7 +734,7 @@ function showGameOptions() {
   openDateCard();
 }
 
-// DISPLAY THE CHOSEN GAME AND GAMING GIF
+// DISPLAY THE CHOSEN GAME
 
 function showGameResult(game) {
   dateContent.innerHTML = `
@@ -1118,7 +759,7 @@ function showGameResult(game) {
   openDateCard();
 }
 
-// SELECT A GAME, OR RANDOMLY PICK ONE
+// SELECT A GAME OR RANDOMLY PICK ONE
 
 function selectGame(game) {
   if (game === "random") {
@@ -1197,7 +838,7 @@ document.querySelectorAll("[data-date]").forEach(button => {
   });
 });
 
-// HANDLE GAME SELECTIONS AND THE CHOOSE-ANOTHER-GAME BUTTON
+// HANDLE GAME SELECTIONS AND CHOOSE-ANOTHER-GAME BUTTON
 
 dateContent.addEventListener("click", event => {
   const gameButton = event.target.closest("[data-game]");
@@ -1213,7 +854,6 @@ dateContent.addEventListener("click", event => {
 // BACK TO THE MAIN DATE-NIGHT OPTIONS
 
 dateBackButton.addEventListener("click", closeDateCard);
-
 
 // FLOATING HEARTS
 
