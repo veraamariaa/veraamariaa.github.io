@@ -425,6 +425,168 @@ footer p {
     transition-duration:.01ms!important;
   }
 }
+
+
+/* DATE NIGHT SECTION */
+
+.date-night {
+  max-width: 760px;
+  margin: 30px auto 70px;
+  padding: 20px;
+  text-align: center;
+}
+
+.date-night h2 {
+  font: 600 clamp(27px, 5vw, 36px) 'Playfair Display', serif;
+  color: var(--pink);
+  margin-bottom: 12px;
+}
+
+.date-subtitle {
+  color: #ded9f8;
+  margin-bottom: 28px;
+  line-height: 1.7;
+}
+
+.date-stage {
+  perspective: 1200px;
+  max-width: 460px;
+  margin: auto;
+}
+
+.date-card {
+  position: relative;
+  width: 100%;
+  min-height: 390px;
+  transform-style: preserve-3d;
+  transition: transform .75s cubic-bezier(.2,.75,.25,1);
+}
+
+.date-card.flipped {
+  transform: rotateY(-180deg);
+}
+
+.date-face {
+  position: absolute;
+  inset: 0;
+  min-height: 390px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border: 1px solid #ffffff35;
+  border-radius: 26px;
+  padding: 28px 22px;
+  background: linear-gradient(145deg,#ffffff1c,#ffffff09);
+  box-shadow: 0 18px 55px #08081766;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 17px;
+  overflow: hidden;
+}
+
+.date-back {
+  transform: rotateY(180deg);
+  background: radial-gradient(circle at top,#5b518b,#292747 75%);
+}
+
+.date-buttons {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.date-choice {
+  border: 1px solid #ffffff35;
+  border-radius: 16px;
+  padding: 17px 10px;
+  background: #ffffff12;
+  color: white;
+  font: 600 14px 'DM Sans',sans-serif;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.date-choice:hover {
+  background: #ffb6d533;
+  border-color: var(--pink);
+  transform: translateY(-3px);
+}
+
+.date-choice span {
+  display: block;
+  font-size: 29px;
+  margin-bottom: 8px;
+}
+
+.game-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+.game-options .date-choice:last-child {
+  grid-column: 1 / -1;
+}
+
+.date-result-gif {
+  width: 100%;
+  max-width: 250px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  border-radius: 18px;
+  background: #ffffff0d;
+}
+
+.date-message {
+  color: #fff1f8;
+  font: 600 21px/1.5 'Playfair Display',serif;
+  max-width: 350px;
+}
+
+.date-back-button {
+  border: 1px solid #ffffff45;
+  background: #ffffff12;
+  color: white;
+  padding: 11px 23px;
+  border-radius: 999px;
+  font: 600 14px 'DM Sans',sans-serif;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: .2s;
+}
+
+.date-back-button:hover {
+  border-color: var(--pink);
+  background: #ffb6d533;
+}
+
+.date-decoration {
+  color: var(--pink);
+  font-size: 30px;
+}
+
+@media(max-width:500px) {
+  .date-night {
+    padding: 14px;
+  }
+
+  .date-face {
+    padding: 22px 15px;
+  }
+
+  .date-choice {
+    font-size: 12px;
+    padding: 14px 7px;
+  }
+
+  .date-message {
+    font-size: 19px;
+  }
+}
+
 </style>
 </head>
 
@@ -529,6 +691,79 @@ footer p {
 
 </main>
 
+
+<section class="date-night">
+
+  <h2>How do you want to spend this date night? ♡</h2>
+
+  <p class="date-subtitle">
+    Pick your favourite, or let me decide for us.
+    Whatever we do, I just want to spend time with you.
+  </p>
+
+  <div class="date-stage">
+
+    <div class="date-card" id="dateCard">
+
+      <!-- FRONT OF CARD -->
+
+      <div class="date-face date-front">
+
+        <div class="date-decoration">♡</div>
+
+        <h2>Tonight's plans?</h2>
+
+        <p class="date-subtitle">
+          What are we in the mood for?
+        </p>
+
+        <div class="date-buttons">
+
+          <button class="date-choice" data-date="games">
+            <span>🎮</span>
+            Play games together
+          </button>
+
+          <button class="date-choice" data-date="show">
+            <span>📺</span>
+            Show time
+          </button>
+
+          <button class="date-choice" data-date="movie">
+            <span>🍿</span>
+            Movie time
+          </button>
+
+          <button class="date-choice" data-date="surprise">
+            <span>💗</span>
+            Surprise me!
+          </button>
+
+        </div>
+
+        <div class="date-decoration">🐧 ♥ 🐧</div>
+
+      </div>
+
+      <!-- BACK OF CARD -->
+
+      <div class="date-face date-back" id="dateBack">
+
+        <div id="dateContent"></div>
+
+        <button class="date-back-button" id="dateBackButton">
+          ← Back to date night options
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
 <footer>
 
   <h2>And one more thing...</h2>
@@ -552,7 +787,7 @@ footer p {
 
 <script>
 
-// YOUR 25 PERSONAL REASONS
+// MY 25 PERSONAL REASONS
 
 const reasons = [
   "You make me feel loved and appreciated, even on my worst days.",
@@ -755,6 +990,231 @@ document.addEventListener("keydown", event => {
   }
 
 });
+
+
+// DATE NIGHT INTERACTIVE MENU
+
+const dateCard = document.getElementById("dateCard");
+const dateContent = document.getElementById("dateContent");
+const dateBackButton = document.getElementById("dateBackButton");
+
+const gameOptions = [
+  "Minecraft",
+  "Deadlock",
+  "Marvel Rivals",
+  "Split Fiction"
+];
+
+const dateActivities = ["games", "show", "movie"];
+
+const showGif =
+  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWFwcm5mbGE2emxqcDhpZjRlNzVmdGVyZGp5enczbGdzZTBoMG0xdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/kJskc34OUQm0nFsCi8/giphy.gif";
+
+const movieGif =
+  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmJvd2E5dDByaGV0OXc0N3B6cjc5a2FoazY2b3RpM3Q1NDcydGpxZSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/whG6tVn1h8zP06DXIJ/giphy.gif";
+
+// FLIP THE CARD
+
+function openDateCard() {
+  dateCard.classList.add("flipped");
+}
+
+function closeDateCard() {
+  dateCard.classList.remove("flipped");
+}
+
+// RANDOM GAME SELECTION
+
+function surpriseGame() {
+  const randomIndex = Math.floor(
+    Math.random() * gameOptions.length
+  );
+
+  selectGame(gameOptions[randomIndex]);
+}
+
+// DISPLAY GAME OPTIONS
+
+function showGameOptions() {
+
+  dateContent.innerHTML = `
+    <div class="date-decoration">🎮</div>
+
+    <h2>What are we playing?</h2>
+
+    <p class="date-subtitle">
+      Choose our adventure tonight!
+    </p>
+
+    <div class="game-options">
+
+      <button class="date-choice" data-game="Minecraft">
+        <span>⛏️</span>
+        Minecraft
+      </button>
+
+      <button class="date-choice" data-game="Deadlock">
+        <span>⚔️</span>
+        Deadlock
+      </button>
+
+      <button class="date-choice" data-game="Marvel Rivals">
+        <span>🦸</span>
+        Marvel Rivals
+      </button>
+
+      <button class="date-choice" data-game="Split Fiction">
+        <span>✨</span>
+        Split Fiction
+      </button>
+
+      <button class="date-choice" data-game="random">
+        <span>💗</span>
+        Surprise me!
+      </button>
+
+    </div>
+  `;
+
+  openDateCard();
+}
+
+// GAME SELECTED
+
+function selectGame(game) {
+
+  if (game === "random") {
+    surpriseGame();
+    return;
+  }
+
+  dateContent.innerHTML = `
+    <div class="date-decoration">🎮 💗</div>
+
+    <h2>It's a date!</h2>
+
+    <p class="date-message">
+      Tonight we're playing...
+      <br><br>
+      ${game}!
+    </p>
+
+    <p class="date-subtitle">
+      Get ready, because you're stuck with me ♡
+    </p>
+  `;
+
+  openDateCard();
+}
+
+// SHOW TIME
+
+function showTime() {
+
+  dateContent.innerHTML = `
+    <div class="date-decoration">📺</div>
+
+    <h2>Show time!</h2>
+
+    <img
+      class="date-result-gif"
+      src="${showGif}"
+      alt="Show time GIF"
+    >
+
+    <p class="date-message">
+      Sit back and relax, we will play a couple Street Brawls and then finish season 2 of Edgerunners.
+    </p>
+  `;
+
+  openDateCard();
+}
+
+// MOVIE TIME
+
+function movieTime() {
+
+  dateContent.innerHTML = `
+    <div class="date-decoration">🍿</div>
+
+    <h2>Movie time!</h2>
+
+    <img
+      class="date-result-gif"
+      src="${movieGif}"
+      alt="Movie time GIF"
+    >
+
+    <p class="date-message">
+      Sit back and relax, we can browse to find a movie to watch.
+    </p>
+  `;
+
+  openDateCard();
+}
+
+// MAIN DATE NIGHT CHOICES
+
+document.querySelectorAll("[data-date]").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const choice = button.dataset.date;
+
+    if (choice === "games") {
+      showGameOptions();
+    }
+
+    if (choice === "show") {
+      showTime();
+    }
+
+    if (choice === "movie") {
+      movieTime();
+    }
+
+    if (choice === "surprise") {
+
+      const randomActivity =
+        dateActivities[
+          Math.floor(Math.random() * dateActivities.length)
+        ];
+
+      if (randomActivity === "games") {
+        showGameOptions();
+        surpriseGame();
+      }
+
+      if (randomActivity === "show") {
+        showTime();
+      }
+
+      if (randomActivity === "movie") {
+        movieTime();
+      }
+
+    }
+
+  });
+
+});
+
+// GAME BUTTONS
+
+dateContent.addEventListener("click", event => {
+
+  const button = event.target.closest("[data-game]");
+
+  if (!button) return;
+
+  selectGame(button.dataset.game);
+
+});
+
+// BACK BUTTON
+
+dateBackButton.addEventListener("click", closeDateCard);
+
 
 // FLOATING HEARTS
 
