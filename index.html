@@ -1,0 +1,793 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>25 Reasons Why I Love You ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+:root {
+  --pink: #ffb6d5;
+  --light-pink: #ffe1ee;
+  --purple: #a99be8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  background:
+    radial-gradient(ellipse at 50% 0%, #41417b 0%, transparent 55%),
+    linear-gradient(160deg, #17172d, #29254c, #17172d);
+}
+
+header {
+  text-align: center;
+  padding: 48px 20px 22px;
+}
+
+.eyebrow {
+  color: var(--pink);
+  letter-spacing: 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(34px, 7vw, 62px);
+  color: var(--light-pink);
+  text-shadow: 0 0 25px #ffb6d580;
+}
+
+.subtitle {
+  margin-top: 12px;
+  color: #ded9f8;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 20px auto;
+}
+
+.penguin {
+  font-size: 58px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.hero-gif {
+  width: 115px;
+  height: 115px;
+  object-fit: contain;
+  border-radius: 18px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.hero-gif:last-child {
+  animation-delay: .5s;
+}
+
+.penguin:last-child {
+  animation-delay: .5s;
+}
+
+.heart {
+  color: var(--pink);
+  font-size: 28px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.25); }
+}
+
+.intro {
+  max-width: 650px;
+  margin: auto;
+  padding: 0 15px;
+  color: #e4defb;
+  line-height: 1.8;
+}
+
+main {
+  max-width: 760px;
+  margin: 24px auto 0;
+  padding: 20px;
+}
+
+.section-title {
+  text-align: center;
+  font: 600 28px 'Playfair Display', serif;
+  color: var(--pink);
+  margin-bottom: 10px;
+}
+
+.instruction {
+  text-align: center;
+  color: #d9d3f2;
+  font-size: 14px;
+  margin-bottom: 22px;
+}
+
+.counter {
+  text-align: center;
+  color: #f3d5e5;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.progress {
+  height: 6px;
+  max-width: 440px;
+  margin: 0 auto 22px;
+  background: #ffffff20;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 4%;
+  background: linear-gradient(90deg, var(--pink), var(--purple));
+  border-radius: 99px;
+  transition: width .35s ease;
+}
+
+.stage {
+  perspective: 1200px;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.flip-card {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .75s cubic-bezier(.2,.75,.25,1);
+  cursor: pointer;
+  outline: none;
+}
+
+.flip-card.flipped {
+  transform: rotateY(-180deg);
+}
+
+.flip-card:focus-visible .face {
+  outline: 3px solid var(--pink);
+  outline-offset: 5px;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border: 1px solid #ffffff35;
+  border-radius: 26px;
+  background: linear-gradient(145deg,#ffffff1c,#ffffff09);
+  box-shadow: 0 18px 55px #08081766;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.front {
+  gap: 16px;
+}
+
+.gif-wrap {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  flex: 0 0 auto;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(135deg,#49467e,#8d80bd);
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.gif-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.gif-fallback {
+  font-size: 95px;
+  filter: drop-shadow(0 8px 12px #17172d66);
+}
+
+.tap-hint {
+  color: #f8dceb;
+  font-size: 14px;
+}
+
+.tap-hint span {
+  display: inline-block;
+  margin-left: 5px;
+  animation: pulse 1.5s infinite;
+}
+
+.back {
+  transform: rotateY(-180deg);
+  background: radial-gradient(circle at top,#5b518b,#292747 70%);
+  justify-content: center;
+}
+
+.back .number {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg,var(--pink),var(--purple));
+  color: #29203d;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+.number {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--pink);
+}
+
+.reason {
+  font: 600 clamp(22px,4vw,29px)/1.5 'Playfair Display',serif;
+  color: #fff1f8;
+  max-width: 340px;
+}
+
+.back-note {
+  color: #d9cdec;
+  font-size: 13px;
+  margin-top: 25px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin: 25px auto 0;
+}
+
+.nav-btn {
+  border: 1px solid #ffffff45;
+  background: #ffffff12;
+  color: white;
+  padding: 12px 21px;
+  border-radius: 999px;
+  font: 600 14px 'DM Sans',sans-serif;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: #ffb6d533;
+  border-color: var(--pink);
+  transform: translateY(-2px);
+}
+
+.nav-btn:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.nav-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  max-width: 350px;
+  margin: 18px auto 0;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff45;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.dot.active {
+  background: var(--pink);
+  transform: scale(1.4);
+}
+
+footer {
+  text-align: center;
+  padding: 55px 20px 45px;
+}
+
+footer h2 {
+  font: 600 34px 'Playfair Display',serif;
+  color: var(--pink);
+  margin-bottom: 16px;
+}
+
+footer p {
+  color: #e4defb;
+  line-height: 1.8;
+  max-width: 600px;
+  margin: auto;
+}
+
+.signature {
+  color: var(--pink);
+  font-size: 20px;
+  margin-top: 22px;
+}
+
+.final-heart {
+  font-size: 46px;
+  margin-top: 18px;
+  animation: pulse 1.5s infinite;
+}
+
+.floating-heart {
+  position: fixed;
+  bottom: -30px;
+  color: var(--pink);
+  opacity: .6;
+  pointer-events: none;
+  animation: rise 8s linear forwards;
+  z-index: -1;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes slideNext {
+  from {
+    opacity: .35;
+    transform: translateX(35px) scale(.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slidePrev {
+  from {
+    opacity: .35;
+    transform: translateX(-35px) scale(.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.flip-card.animate-next {
+  animation: slideNext .35s ease;
+}
+
+.flip-card.animate-prev {
+  animation: slidePrev .35s ease;
+}
+
+@media(max-width:500px) {
+  header { padding-top: 35px; }
+  .penguin { font-size: 46px; }
+  main { padding: 14px; }
+  .flip-card { height: 440px; }
+  .gif-wrap { max-width: 290px; }
+  .face { padding: 18px; }
+  .nav-btn { padding: 11px 17px; }
+
+  .hero-gif {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="eyebrow">A little something for my Pagu Pagusons ♡</div>
+
+  <h1>25 Reasons Why I Love You</h1>
+
+  <p class="subtitle">
+    Because one reason could never be enough.
+  </p>
+
+<div class="hero">
+  <img
+    class="hero-gif"
+    src="https://media.giphy.com/media/fhvedUSbRFQ7LRbkT0/giphy.gif"
+    alt="Pudgy Penguin 1">
+
+  <span class="heart">♥</span>
+
+  <img
+    class="hero-gif"
+    src="https://media.giphy.com/media/VJDaueNiwFqKHv6xXz/giphy.gif"
+    alt="Pudgy Penguin 2">
+</div>
+
+  <p class="intro">
+    I wanted to make you something that reminds you
+    just how special you are to me. Here are 25 reasons
+    why I love you. And honestly, I could keep going forever.
+  </p>
+</header>
+
+<main>
+
+  <h2 class="section-title">
+    A little love, one card at a time ♡
+  </h2>
+
+  <p class="instruction">
+    Tap the middle of the card to turn it over and reveal your reason.
+  </p>
+
+  <div class="counter" id="counter">01 / 25</div>
+
+  <div class="progress">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+
+  <div class="stage">
+
+    <div class="flip-card" id="flipCard"
+         role="button" tabindex="0"
+         aria-label="Flip the card to reveal reason 1">
+
+      <div class="face front">
+
+        <div class="number" id="frontNumber">01</div>
+
+        <div class="gif-wrap">
+          <img id="penguinGif" src="" alt="Pudgy Penguin GIF">
+          <div class="gif-fallback" id="gifFallback">🐧💕</div>
+        </div>
+
+        <div class="tap-hint">
+          A little penguin surprise <span>♡</span>
+          <br>Tap to reveal
+        </div>
+
+      </div>
+
+      <div class="face back">
+
+        <div class="number" id="backNumber">01</div>
+
+        <p class="reason" id="reasonText"></p>
+
+        <p class="back-note">
+          One of the many reasons I love you ♡
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="navigation">
+    <button class="nav-btn" id="prevBtn" type="button">
+      ← Previous
+    </button>
+
+    <button class="nav-btn" id="nextBtn" type="button">
+      Next →
+    </button>
+  </div>
+
+  <div class="nav-dots" id="dots"
+       aria-label="Choose a reason"></div>
+
+</main>
+
+<footer>
+
+  <h2>And one more thing...</h2>
+
+  <p>
+    Out of all the people in this world, I'm so glad
+    I get to know you, love you, and share my life with you.
+    <br><br>
+    You're my favourite person, my comfort, and my
+    favourite notification.
+    <br><br>
+    These are only 25 reasons out of an endless list.
+    I hope you never forget how loved you are.
+  </p>
+
+  <div class="signature">Forever your pagu ♡</div>
+
+  <div class="final-heart">♥</div>
+
+</footer>
+
+<script>
+
+// YOUR 25 PERSONAL REASONS
+
+const reasons = [
+  "You make me feel loved and appreciated, even on my worst days.",
+  "You always manage to make me smile even if I'm being silly.",
+  "I love how we can talk about absolutely anything and we share very similar interests.",
+  "You make even the bad days feel special.",
+  "I feel safe and comfortable being myself around you, and it's really easy to open up about difficult subjects to you.",
+  "Your laugh is one of my favourite sounds.",
+  "I love how you always make time for me.",
+  "You make me feel like I'm not alone.",
+  "I love that we can do absolutely anything and it will be fun.",
+  "You make me excited about our future together.",
+  "I love how caring you can be.",
+  "You listen to me, even when I ramble.",
+  "I can be completely myself around you.",
+  "You make me laugh without even trying.",
+  "I love your personality and everything that makes you you.",
+  "You make distance feel a little less difficult.",
+  "I love hearing about your day.",
+  "You make me feel special in the smallest ways.",
+  "I love how you understand me.",
+  "You're someone I can always look forward to talking to.",
+  "I love the memories we've already made.",
+  "You give me reasons to look forward to tomorrow.",
+  "I love that I get to learn new things about you.",
+  "You're my favourite person to annoy and be annoyed by.",
+  "Most importantly, I love you simply because you're YOU."
+];
+
+// PUDGY PENGUIN GIFS
+
+const gifs = [
+  "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3cjJldDYwMmduczVieDc2enVqaWd0MmNoa29qb3llbjNmeTYwYnI1dyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xO4UapWGcIRv0VS1Xg/giphy.gif",
+  "https://media.giphy.com/media/WJxRaAbcKqcI9EVIBT/giphy.gif",
+  "https://media.giphy.com/media/MkEq3K7k24Pgej6Y3f/giphy.gif",
+  "https://media.giphy.com/media/pIauHMztZeVnvAK3tF/giphy.gif",
+  "https://media.giphy.com/media/p3TK2KqUjBxMhZaAZ9/giphy.gif",
+  "https://media.giphy.com/media/NgDOsqXU608KiYKlqX/giphy.gif",
+  "https://media.giphy.com/media/8hSHjWFb9IqN61SXc6/giphy.gif",
+  "https://media.giphy.com/media/fuX4Xv1TSgkngtkRgR/giphy.gif",
+  "https://media.giphy.com/media/fJX8glJhxMltYAc9G6/giphy.gif",
+  "https://media.giphy.com/media/QpwGOP6cGsztqWHHm8/giphy.gif",
+  "https://media.giphy.com/media/HRWKnAxyQ8LtWs8G4k/giphy.gif",
+  "https://media.giphy.com/media/KgT4TsWrdtstK48jVM/giphy.gif",
+  "https://media.giphy.com/media/xzR5jyU2hRo9BfFMVS/giphy.gif",
+  "https://media.giphy.com/media/hPh5C0ld1R7pPg0dev/giphy.gif",
+  "https://media.giphy.com/media/yOclp0K1xb7B0117Gt/giphy.gif",
+  "https://media.giphy.com/media/ER8GjVG4yH7JTQOE1Z/giphy.gif",
+  "https://media.giphy.com/media/jxU6TFAHetHEWQa3nL/giphy.gif",
+  "https://media.giphy.com/media/DWyJMOhuC2rZWEJ8ks/giphy.gif",
+  "https://media.giphy.com/media/ScvkljouGKBu2sXNqm/giphy.gif",
+  "https://media.giphy.com/media/13ra5ABfjcvhdl3YvK/giphy.gif",
+  "https://media.giphy.com/media/xHUICtIAYQyNq8K1zn/giphy.gif",
+  "https://media.giphy.com/media/zr7ZOj3imYqCIcuB0t/giphy.gif",
+  "https://media.giphy.com/media/HyCARIo0sOlpoXdoSt/giphy.gif",
+  "https://media.giphy.com/media/5otl4l1WHy2VezZlV9/giphy.gif",
+  ""
+];
+
+let current = 0;
+
+const card = document.getElementById("flipCard");
+const gif = document.getElementById("penguinGif");
+const fallback = document.getElementById("gifFallback");
+const reasonText = document.getElementById("reasonText");
+const counter = document.getElementById("counter");
+const progress = document.getElementById("progress");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const dots = document.getElementById("dots");
+
+// FLIP CARD
+
+function flipCard() {
+  card.classList.toggle("flipped");
+}
+
+card.addEventListener("click", flipCard);
+
+card.addEventListener("keydown", event => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    flipCard();
+  }
+});
+
+// CHANGE REASON
+
+function showReason(index, direction = 1) {
+
+  current = Math.max(0, Math.min(reasons.length - 1, index));
+
+  card.classList.remove("flipped", "animate-next", "animate-prev");
+
+  card.classList.add(
+    direction >= 0 ? "animate-next" : "animate-prev"
+  );
+
+  document.getElementById("frontNumber").textContent =
+    String(current + 1).padStart(2, "0");
+
+  document.getElementById("backNumber").textContent =
+    String(current + 1).padStart(2, "0");
+
+  card.setAttribute(
+    "aria-label",
+    `Flip the card to reveal reason ${current + 1}`
+  );
+
+  reasonText.textContent = reasons[current];
+
+  counter.textContent =
+    `${String(current + 1).padStart(2, "0")} / ${String(reasons.length).padStart(2, "0")}`;
+
+  progress.style.width =
+    `${((current + 1) / reasons.length) * 100}%`;
+
+  // LOAD GIF
+
+  const gifUrl = gifs[current];
+
+  gif.style.display = "none";
+  fallback.style.display = "grid";
+
+  gif.onerror = () => {
+    gif.style.display = "none";
+    fallback.style.display = "grid";
+  };
+
+  gif.onload = () => {
+    gif.style.display = "block";
+    fallback.style.display = "none";
+  };
+
+  if (gifUrl) {
+    gif.src = gifUrl;
+  } else {
+    gif.removeAttribute("src");
+  }
+
+  // NAVIGATION BUTTONS
+
+  prevBtn.disabled = current === 0;
+  nextBtn.disabled = current === reasons.length - 1;
+
+  // PROGRESS DOTS
+
+  [...dots.children].forEach((dot, i) => {
+    dot.classList.toggle("active", i === current);
+
+    dot.setAttribute(
+      "aria-current",
+      i === current ? "step" : "false"
+    );
+  });
+}
+
+// CREATE NAVIGATION DOTS
+
+reasons.forEach((_, index) => {
+
+  const dot = document.createElement("button");
+
+  dot.className = "dot";
+  dot.type = "button";
+
+  dot.setAttribute(
+    "aria-label",
+    `Go to reason ${index + 1}`
+  );
+
+  dot.addEventListener("click", () => {
+    showReason(index, index >= current ? 1 : -1);
+  });
+
+  dots.appendChild(dot);
+
+});
+
+// PREVIOUS AND NEXT
+
+prevBtn.addEventListener("click", () => {
+  showReason(current - 1, -1);
+});
+
+nextBtn.addEventListener("click", () => {
+  showReason(current + 1, 1);
+});
+
+// KEYBOARD NAVIGATION
+
+document.addEventListener("keydown", event => {
+
+  if (event.key === "ArrowRight") {
+    showReason(current + 1, 1);
+  }
+
+  if (event.key === "ArrowLeft") {
+    showReason(current - 1, -1);
+  }
+
+});
+
+// FLOATING HEARTS
+
+function createHeart() {
+
+  const heart = document.createElement("div");
+
+  heart.className = "floating-heart";
+
+  heart.textContent =
+    Math.random() > .5 ? "♥" : "♡";
+
+  heart.style.left = Math.random() * 100 + "vw";
+
+  heart.style.fontSize =
+    (12 + Math.random() * 20) + "px";
+
+  heart.style.animationDuration =
+    (6 + Math.random() * 5) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 11000);
+
+}
+
+setInterval(createHeart, 700);
+
+// START ON FIRST CARD
+
+showReason(0);
+
+</script>
+
+</body>
+</html>
