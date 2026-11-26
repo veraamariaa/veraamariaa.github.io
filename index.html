@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>25 Reasons Why I Love You ♡</title>
+<link rel="icon" type="image/png" href="favicon.png">
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
@@ -475,6 +476,11 @@ footer p { color:#e4defb; line-height:1.8; max-width:600px; margin:auto; }
     ♡ GIFs <span>＋</span>
   </button>
   <div class="panel-content" id="gifsContent">
+
+<div class="credit-group">
+  <h3>Website Images</h3>
+  <div id="websiteImageCredits"></div>
+</div>
     
 <div class="credit-group">
   <h3>Penguin GIFs</h3>
@@ -926,12 +932,15 @@ function addCreditLink(container, label, url) {
 // GIF CREDIT LINKS
 
 
+
 // GIF AND IMAGE CREDIT LINKS
 
 const heroCredits = document.getElementById("heroCredits");
 const reasonCredits = document.getElementById("reasonCredits");
 const dateCredits = document.getElementById("dateCredits");
 const penguinImageCredits = document.getElementById("penguinImageCredits");
+
+const websiteImageCredits = document.getElementById("websiteImageCredits");
 
 const pollyImage =
   "https://static.wikia.nocookie.net/spoof/images/2/28/Polly_%28Pudgy_Penguins%29.png/revision/latest?cb=20250223010902";
@@ -972,6 +981,11 @@ addCreditLink(
   pollyImage
 );
 
+addCreditLink(
+  websiteImageCredits,
+  "Website favicon — Penguin image",
+  "favicon.png"
+);
 
 // LEARNING LINKS — KEPT SEPARATE FROM GIFS
 
