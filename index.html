@@ -113,7 +113,32 @@ footer p { color:#e4defb; line-height:1.8; max-width:600px; margin:auto; }
 .flip-card.animate-next { animation:slideNext .35s ease; }
 .flip-card.animate-prev { animation:slidePrev .35s ease; }
 
-.date-night { max-width:760px; margin:30px auto 70px; padding:20px; text-align:center; }
+}
+
+
+.date-night {
+  width:100%;
+  max-width:760px;
+  margin:30px auto 70px;
+  padding:20px;
+  text-align:center;
+}
+
+.date-night > h2,
+.date-night > .date-subtitle {
+  width:100%;
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.date-stage {
+  width:100%;
+  max-width:460px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
 .date-night h2 { font:600 clamp(27px,5vw,36px) 'Playfair Display',serif; color:var(--pink); margin-bottom:12px; }
 .date-subtitle { color:#ded9f8; margin-bottom:28px; line-height:1.7; }
 .date-stage { perspective:1200px; max-width:460px; margin:auto; }
@@ -192,6 +217,7 @@ footer p { color:#e4defb; line-height:1.8; max-width:600px; margin:auto; }
 .panel-content.visible { display:block; }
 .credit-group { margin:18px 0; }
 .credit-group h3 { color:var(--light-pink); font-size:13px; letter-spacing:1px; text-transform:uppercase; margin-bottom:9px; }
+
 .credit-group a {
   display:block; color:#ded9f8; font-size:13px; line-height:1.5;
   padding:7px 0; border-bottom:1px solid #ffffff18;
@@ -224,6 +250,211 @@ footer p { color:#e4defb; line-height:1.8; max-width:600px; margin:auto; }
     transition-duration:.01ms!important;
   }
 }
+
+/* VIRTUAL PENGUIN PET */
+
+.virtual-penguin-section {
+  max-width:760px;
+  margin:20px auto 65px;
+  padding:20px;
+  text-align:center;
+}
+
+.virtual-penguin-section h2 {
+  color:var(--pink);
+  font:600 clamp(27px,5vw,36px) 'Playfair Display',serif;
+  margin-bottom:12px;
+}
+
+.virtual-penguin-section > p {
+  color:#ded9f8;
+  line-height:1.7;
+  margin-bottom:22px;
+}
+
+.penguin-pet-card {
+  max-width:460px;
+  min-height:330px;
+  margin:0 auto;
+  padding:30px 22px;
+  border:1px solid #ffffff45;
+  border-radius:24px;
+  background:linear-gradient(145deg,#ffffff1c,#ffffff09);
+  box-shadow:0 18px 55px #08081766;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+}
+
+.egg-button {
+  border:0;
+  background:transparent;
+  color:white;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  font:600 14px 'DM Sans',sans-serif;
+}
+
+.egg-illustration {
+  display:grid;
+  place-items:center;
+  width:150px;
+  height:175px;
+  font-size:112px;
+  filter:drop-shadow(0 12px 18px #08081766);
+  transform-origin:bottom center;
+}
+
+.egg-button:hover .egg-illustration {
+  transform:translateY(-5px) rotate(-4deg);
+}
+
+.egg-button.hatching .egg-illustration {
+  animation:eggHatch .8s ease-in-out 2;
+}
+
+@keyframes eggHatch {
+  0%,100% { transform:rotate(0); }
+  20% { transform:rotate(-9deg); }
+  40% { transform:rotate(9deg); }
+  60% { transform:rotate(-7deg); }
+  80% { transform:rotate(7deg); }
+}
+
+
+.baby-penguin {
+  display:none;
+  width:190px;
+  height:205px;
+  object-fit:contain;
+  filter:drop-shadow(0 12px 18px #08081766);
+}
+
+.pet-stats[hidden] {
+  display:none;
+}
+
+.baby-penguin.visible {
+  display:block;
+  animation:babyPop .7s cubic-bezier(.2,.8,.2,1) both, babyWaddle 2.5s ease-in-out 0.7s infinite;
+}
+
+
+@keyframes babyPop {
+  from { opacity:0; transform:translateY(35px) scale(.45); }
+  to { opacity:1; transform:translateY(0) scale(1); }
+}
+
+@keyframes babyWaddle {
+  0%,100% { rotate:0deg; }
+  25% { rotate:-7deg; }
+  75% { rotate:7deg; }
+}
+
+.pet-stats {
+  width:100%;
+  max-width:340px;
+  display:grid;
+  gap:13px;
+  margin:4px 0 2px;
+  text-align:left;
+}
+
+.pet-stats[hidden] { display:none; }
+
+.pet-stat { width:100%; }
+
+.pet-stat-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:6px;
+  color:#fff1f8;
+  font:600 13px 'DM Sans',sans-serif;
+}
+
+.pet-stat-value {
+  color:#ffd4e8;
+  font-variant-numeric:tabular-nums;
+}
+
+.pet-stat-track {
+  width:100%;
+  height:11px;
+  overflow:hidden;
+  border:1px solid #ffffff45;
+  border-radius:999px;
+  background:#100d25;
+}
+
+.pet-stat-fill {
+  display:block;
+  width:50%;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,#d76aab,#ffc3df);
+  transition:width .35s ease;
+}
+
+.pet-stat-fill.food {
+  background:linear-gradient(90deg,#d99a55,#ffe0a6);
+}
+
+.pet-stat-fill.happiness {
+  background:linear-gradient(90deg,#8b83dc,#c9c2ff);
+}
+
+.pet-message {
+  min-height:28px;
+  color:#fff1f8;
+  font:600 18px/1.5 'Playfair Display',serif;
+}
+
+.pet-actions {
+  display:none;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin-top:5px;
+}
+
+.pet-actions.visible { display:flex; }
+
+.pet-action-button {
+  border:1px solid #ffffff50;
+  border-radius:999px;
+  padding:11px 17px;
+  background:#ffffff12;
+  color:white;
+  font:600 13px 'DM Sans',sans-serif;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.pet-action-button:hover {
+  border-color:var(--pink);
+  background:#ffb6d533;
+  transform:translateY(-2px);
+}
+
+.pet-hearts {
+  min-height:22px;
+  color:var(--pink);
+  letter-spacing:5px;
+  font-size:18px;
+}
+
+@media(max-width:500px) {
+  .virtual-penguin-section { padding:14px; }
+  .penguin-pet-card { padding:25px 15px; }
+}
+
 </style>
 </head>
 
@@ -244,7 +475,17 @@ footer p { color:#e4defb; line-height:1.8; max-width:600px; margin:auto; }
     ♡ GIFs <span>＋</span>
   </button>
   <div class="panel-content" id="gifsContent">
-    <div class="credit-group"><h3>Penguin GIFs</h3><div id="heroCredits"></div></div>
+    
+<div class="credit-group">
+  <h3>Penguin GIFs</h3>
+  <div id="heroCredits"></div>
+</div>
+
+<div class="credit-group">
+  <h3>Penguin Images</h3>
+  <div id="penguinImageCredits"></div>
+</div>
+
     <div class="credit-group"><h3>The 25 reasons</h3><div id="reasonCredits"></div></div>
     <div class="credit-group"><h3>Date night GIFs</h3><div id="dateCredits"></div></div>
     <p class="credit-note">All GIFs belong to their respective creators and owners.</p>
@@ -346,6 +587,69 @@ footer p { color:#e4defb; line-height:1.8; max-width:600px; margin:auto; }
   </div>
 </section>
 
+<section class="virtual-penguin-section" id="virtualPenguinSection">
+  <h2>A little penguin surprise ♡</h2>
+  <p>I think there's a tiny friend waiting to meet you.</p>
+
+  <div class="penguin-pet-card">
+    <button class="egg-button" id="eggButton" type="button">
+      <span class="egg-illustration" aria-hidden="true">🥚</span>
+      <span>Tap the egg to hatch it ♡</span>
+    </button>
+
+    <img
+      class="baby-penguin"
+      id="babyPenguin"
+      src="https://static.wikia.nocookie.net/spoof/images/2/28/Polly_%28Pudgy_Penguins%29.png/revision/latest?cb=20250223010902"
+      alt="Polly the Pudgy Penguin"
+      width="190"
+      height="205"
+    >
+
+    <div class="pet-stats" id="petStats" aria-label="Penguin stats" hidden>
+      <div class="pet-stat">
+        <div class="pet-stat-heading">
+          <span>♡ Love</span>
+          <span class="pet-stat-value" id="loveValue">50%</span>
+        </div>
+        <div class="pet-stat-track" id="loveTrack" role="progressbar" aria-label="Love" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <span class="pet-stat-fill" id="loveBar"></span>
+        </div>
+      </div>
+
+      <div class="pet-stat">
+        <div class="pet-stat-heading">
+          <span>🐟 Food</span>
+          <span class="pet-stat-value" id="foodValue">50%</span>
+        </div>
+        <div class="pet-stat-track" id="foodTrack" role="progressbar" aria-label="Food" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <span class="pet-stat-fill food" id="foodBar"></span>
+        </div>
+      </div>
+
+      <div class="pet-stat">
+        <div class="pet-stat-heading">
+          <span>✨ Happiness</span>
+          <span class="pet-stat-value" id="happinessValue">50%</span>
+        </div>
+        <div class="pet-stat-track" id="happinessTrack" role="progressbar" aria-label="Happiness" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <span class="pet-stat-fill happiness" id="happinessBar"></span>
+        </div>
+      </div>
+    </div>
+
+    <p class="pet-message" id="petMessage" aria-live="polite">A little surprise is waiting inside...</p>
+
+    <div class="pet-actions" id="petActions">
+      <button class="pet-action-button" type="button" data-pet-action="cuddle">♡ Give a cuddle</button>
+      <button class="pet-action-button" type="button" data-pet-action="feed">🐟 Feed fish</button>
+      <button class="pet-action-button" type="button" data-pet-action="play">✨ Play together</button>
+    </div>
+
+    <div class="pet-hearts" id="petHearts" aria-hidden="true"></div>
+  </div>
+</section>
+
 <footer>
   <h2>And one more thing...</h2>
   <p>
@@ -369,7 +673,6 @@ footer p { color:#e4defb; line-height:1.8; max-width:600px; margin:auto; }
 </div>
 
 <script>
-
 // MY 25 PERSONAL REASONS
 
 const reasons = [
@@ -622,9 +925,18 @@ function addCreditLink(container, label, url) {
 
 // GIF CREDIT LINKS
 
+
+// GIF AND IMAGE CREDIT LINKS
+
 const heroCredits = document.getElementById("heroCredits");
 const reasonCredits = document.getElementById("reasonCredits");
 const dateCredits = document.getElementById("dateCredits");
+const penguinImageCredits = document.getElementById("penguinImageCredits");
+
+const pollyImage =
+  "https://static.wikia.nocookie.net/spoof/images/2/28/Polly_%28Pudgy_Penguins%29.png/revision/latest?cb=20250223010902";
+
+// HEADER PENGUIN GIFS
 
 addCreditLink(
   heroCredits,
@@ -638,19 +950,45 @@ addCreditLink(
   "https://media.giphy.com/media/VJDaueNiwFqKHv6xXz/giphy.gif"
 );
 
+// ALL REASON GIFS
+
 gifs.forEach((url, index) => {
   if (url) {
     addCreditLink(reasonCredits, `Reason ${index + 1} GIF`, url);
   }
 });
 
+// DATE NIGHT GIFS
+
 addCreditLink(dateCredits, "Gaming GIF", gamingGif);
 addCreditLink(dateCredits, "Show time GIF", showGif);
 addCreditLink(dateCredits, "Movie time GIF", movieGif);
 
+// POLLY THE PUDGY PENGUIN PNG
+
+addCreditLink(
+  penguinImageCredits,
+  "Polly — Penguin image",
+  pollyImage
+);
+
+
 // LEARNING LINKS — KEPT SEPARATE FROM GIFS
 
+
+// EXTERNAL LINKS AND LEARNING RESOURCES
+
 const learningCredits = document.getElementById("learningCredits");
+
+// POLLY IMAGE SOURCE
+
+addCreditLink(
+  learningCredits,
+  "Polly — Original PNG source",
+  "https://static.wikia.nocookie.net/spoof/images/2/28/Polly_%28Pudgy_Penguins%29.png/revision/latest?cb=20250223010902"
+);
+
+// FREECODECAMP RESOURCES
 
 addCreditLink(
   learningCredits,
@@ -676,20 +1014,6 @@ addCreditLink(
   "https://www.freecodecamp.org/learn/javascript-v9/"
 );
 
-// DATE NIGHT INTERACTIVE MENU
-
-const dateCard = document.getElementById("dateCard");
-const dateContent = document.getElementById("dateContent");
-const dateBackButton = document.getElementById("dateBackButton");
-
-const gameOptions = [
-  "Minecraft",
-  "Deadlock",
-  "Marvel Rivals",
-  "Split Fiction"
-];
-
-const dateActivities = ["games", "show", "movie"];
 
 // FLIP THE DATE-NIGHT CARD
 
@@ -854,6 +1178,246 @@ dateContent.addEventListener("click", event => {
 // BACK TO THE MAIN DATE-NIGHT OPTIONS
 
 dateBackButton.addEventListener("click", closeDateCard);
+
+// VIRTUAL PENGUIN: HATCHING, CARE STATS AND ACTIONS
+
+
+// VIRTUAL PENGUIN: HATCHING, CARE STATS, ACTIONS AND TIME DECAY
+
+const eggButton = document.getElementById("eggButton");
+const babyPenguin = document.getElementById("babyPenguin");
+const petMessage = document.getElementById("petMessage");
+const petActions = document.getElementById("petActions");
+const petHearts = document.getElementById("petHearts");
+const petStats = document.getElementById("petStats");
+
+const penguinStorageKey = "paguPenguinHatched";
+const penguinStatsStorageKey = "paguPenguinStats";
+const penguinLastUpdateKey = "paguPenguinLastUpdate";
+
+// How quickly Polly's stats decrease.
+// 1% per hour for each stat.
+const DECAY_INTERVAL = 60 * 60 * 1000;
+const DECAY_AMOUNT = 1;
+
+let lastPenguinUpdate = Date.now();
+
+const penguinStats = {
+  love: 50,
+  food: 50,
+  happiness: 50
+};
+
+// SAVE STATS AND LAST UPDATE TIME
+
+function savePenguinStats() {
+  try {
+    localStorage.setItem(
+      penguinStatsStorageKey,
+      JSON.stringify(penguinStats)
+    );
+
+    localStorage.setItem(
+      penguinLastUpdateKey,
+      String(lastPenguinUpdate)
+    );
+  } catch (error) {
+    // Stats still work for this visit if storage is unavailable.
+  }
+}
+
+// UPDATE THE VISUAL BARS
+
+function updatePenguinStats() {
+  Object.entries(penguinStats).forEach(([stat, value]) => {
+    const bar = document.getElementById(`${stat}Bar`);
+    const valueLabel = document.getElementById(`${stat}Value`);
+    const track = document.getElementById(`${stat}Track`);
+
+    if (bar) bar.style.width = `${value}%`;
+    if (valueLabel) valueLabel.textContent = `${value}%`;
+
+    if (track) {
+      track.setAttribute("aria-valuenow", String(value));
+    }
+  });
+
+  savePenguinStats();
+}
+
+// APPLY DECAY BASED ON ELAPSED REAL TIME
+
+function applyPenguinDecay() {
+  const now = Date.now();
+  const elapsed = now - lastPenguinUpdate;
+
+  if (elapsed < DECAY_INTERVAL) return;
+
+  const intervals = Math.floor(elapsed / DECAY_INTERVAL);
+  const decrease = intervals * DECAY_AMOUNT;
+
+  Object.keys(penguinStats).forEach(stat => {
+    penguinStats[stat] = Math.max(
+      0,
+      penguinStats[stat] - decrease
+    );
+  });
+
+  // Preserve any leftover time towards the next decay.
+  lastPenguinUpdate += intervals * DECAY_INTERVAL;
+
+  updatePenguinStats();
+}
+
+// INCREASE A STAT WHEN YOU CARE FOR POLLY
+
+function changePenguinStat(stat, amount) {
+  // Apply any decay that has happened before the action.
+  applyPenguinDecay();
+
+  penguinStats[stat] = Math.min(
+    100,
+    penguinStats[stat] + amount
+  );
+
+  // Reset the timer after caring for Polly.
+  lastPenguinUpdate = Date.now();
+
+  updatePenguinStats();
+}
+
+// SHOW POLLY AFTER HATCHING
+
+function showHatchedPenguin() {
+  eggButton.style.display = "none";
+  babyPenguin.classList.add("visible");
+  petStats.hidden = false;
+  petActions.classList.add("visible");
+
+  updatePenguinStats();
+}
+
+// HATCH THE EGG
+
+function hatchPenguin() {
+  if (!eggButton || eggButton.classList.contains("hatching")) return;
+
+  eggButton.classList.add("hatching");
+  petMessage.textContent = "Something is happening... ♡";
+
+  window.setTimeout(() => {
+    eggButton.style.display = "none";
+
+    showHatchedPenguin();
+
+    petMessage.textContent =
+      "You hatched a little penguin! Give your new friend some love ♡";
+
+    petHearts.textContent = "♡ ♥ ♡";
+
+    lastPenguinUpdate = Date.now();
+
+    try {
+      localStorage.setItem(penguinStorageKey, "true");
+    } catch (error) {
+      // The penguin still works for this visit.
+    }
+
+    savePenguinStats();
+  }, 1600);
+}
+
+eggButton.addEventListener("click", hatchPenguin);
+
+// CUDDLE, FEED AND PLAY BUTTONS
+
+petActions.addEventListener("click", event => {
+  const actionButton = event.target.closest("[data-pet-action]");
+
+  if (!actionButton) return;
+
+  const action = actionButton.dataset.petAction;
+
+  if (action === "cuddle") {
+    changePenguinStat("love", 10);
+
+    petMessage.textContent =
+      "Your penguin feels so loved. Biggest cuddle ever! ♡";
+
+    petHearts.textContent = "♥ ♥ ♥";
+
+  } else if (action === "feed") {
+    changePenguinStat("food", 10);
+
+    petMessage.textContent =
+      "Nom nom! Your little penguin loved the fish. 🐟";
+
+    petHearts.textContent = "♡ 🐟 ♡";
+
+  } else if (action === "play") {
+    changePenguinStat("happiness", 10);
+
+    petMessage.textContent =
+      "Your penguin is having the best time playing with you! ✨";
+
+    petHearts.textContent = "♡ ✨ ♥";
+  }
+});
+
+// RESTORE SAVED STATS AND APPLY TIME DECAY
+
+try {
+  const savedStats = JSON.parse(
+    localStorage.getItem(penguinStatsStorageKey) || "null"
+  );
+
+  if (savedStats && typeof savedStats === "object") {
+    ["love", "food", "happiness"].forEach(stat => {
+      const value = Number(savedStats[stat]);
+
+      if (Number.isFinite(value)) {
+        penguinStats[stat] = Math.max(
+          0,
+          Math.min(100, value)
+        );
+      }
+    });
+  }
+
+  const savedTimestamp = Number(
+    localStorage.getItem(penguinLastUpdateKey)
+  );
+
+  if (Number.isFinite(savedTimestamp) && savedTimestamp > 0) {
+    lastPenguinUpdate = savedTimestamp;
+  } else {
+    lastPenguinUpdate = Date.now();
+  }
+
+  if (localStorage.getItem(penguinStorageKey) === "true") {
+    showHatchedPenguin();
+
+    // Catch up on any time Polly spent waiting.
+    applyPenguinDecay();
+
+    petMessage.textContent =
+      "Your little penguin is happy to see you again ♡";
+
+    petHearts.textContent = "♡ ♥ ♡";
+  }
+
+} catch (error) {
+  // If storage is unavailable, the penguin still works for this visit.
+}
+
+// CHECK FOR DECAY WHILE THE WEBSITE IS OPEN
+
+setInterval(() => {
+  if (localStorage.getItem(penguinStorageKey) === "true") {
+    applyPenguinDecay();
+  }
+}, 60 * 1000);
+
 
 // FLOATING HEARTS
 
