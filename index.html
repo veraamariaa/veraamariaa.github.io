@@ -366,6 +366,28 @@ footer p { color:#e4defb; line-height:1.8; max-width:600px; margin:auto; }
   .achievement-grid { grid-template-columns:1fr; }
 }
 
+
+/* ALL ACHIEVEMENTS UNLOCKED CELEBRATION */
+#achievementFireworks {
+  position:fixed; inset:0; width:100%; height:100%; z-index:2000;
+  pointer-events:none; opacity:0; transition:opacity .25s ease;
+}
+#achievementFireworks.active { opacity:1; }
+.achievement-grand-finale {
+  position:fixed; z-index:2001; top:50%; left:50%;
+  width:min(520px,calc(100vw - 32px)); padding:24px 20px;
+  border:1px solid #ffb6d5aa; border-radius:22px;
+  background:linear-gradient(135deg,#40365fee,#29254cee);
+  box-shadow:0 18px 65px #080817aa; text-align:center;
+  color:#fff1f8; pointer-events:none; opacity:0;
+  transform:translate(-50%,-42%) scale(.88);
+}
+.achievement-grand-finale.visible { animation:grandFinaleIn .65s cubic-bezier(.2,.8,.2,1) forwards; }
+.achievement-grand-finale strong { display:block; color:var(--pink); font:700 clamp(23px,5vw,34px) 'Playfair Display',serif; margin-bottom:8px; }
+.achievement-grand-finale span { color:#eee8ff; line-height:1.6; }
+@keyframes grandFinaleIn { to { opacity:1; transform:translate(-50%,-50%) scale(1); } }
+@media(prefers-reduced-motion:reduce) { .achievement-grand-finale.visible { animation:none; opacity:1; transform:translate(-50%,-50%); } }
+
 /* VIRTUAL PENGUIN PET */
 
 .virtual-penguin-section {
@@ -784,6 +806,13 @@ footer p { color:#e4defb; line-height:1.8; max-width:600px; margin:auto; }
   Achievement unlocked!<strong id="achievementToastName"></strong>
 </div>
 
+
+<canvas id="achievementFireworks" aria-hidden="true"></canvas>
+<div class="achievement-grand-finale" id="achievementGrandFinale" role="status" aria-live="polite">
+  <strong>🎆 You did it! 🎆</strong>
+  <span>All 10 achievements unlocked!<br>You're the perfect penguin parent. ♡</span>
+</div>
+
 <footer>
   <h2>And one more thing...</h2>
   <p>
@@ -898,6 +927,76 @@ function renderAchievements() {
   }).join("");
 }
 
+function launchAchievementFireworks() {
+  const canvas = document.getElementById("achievementFireworks");
+  const message = document.getElementById("achievementGrandFinale");
+  if (!canvas || !message) return;
+
+  // Remember that the grand finale has already happened.
+  try { localStorage.setItem("paguAllAchievementsCelebrated", "true"); } catch (error) {}
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = Math.floor(window.innerWidth * dpr);
+  canvas.height = Math.floor(window.innerHeight * dpr);
+  canvas.classList.add("active");
+  message.classList.add("visible");
+
+  const particles = [];
+  const colours = ["#ffb6d5", "#ffe1ee", "#a99be8", "#fff2a8", "#a8f0e5", "#ffffff"];
+  const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const burst = (x, y) => {
+    const colour = colours[Math.floor(Math.random() * colours.length)];
+    const count = reducedMotion ? 12 : 65;
+    for (let i = 0; i < count; i++) {
+      const angle = Math.PI * 2 * i / count + Math.random() * .08;
+      const speed = (reducedMotion ? 1.5 : 2.2) + Math.random() * (reducedMotion ? 1 : 3.8);
+      particles.push({ x, y, vx:Math.cos(angle)*speed, vy:Math.sin(angle)*speed, life:55+Math.random()*35, maxLife:90, colour, size:1.5+Math.random()*2.2 });
+    }
+  };
+
+  const scale = () => ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  scale();
+  burst(innerWidth*.5, innerHeight*.35);
+  if (!reducedMotion) {
+    window.setTimeout(() => burst(innerWidth*.22, innerHeight*.42), 350);
+    window.setTimeout(() => burst(innerWidth*.78, innerHeight*.38), 700);
+    window.setTimeout(() => burst(innerWidth*.5, innerHeight*.2), 1050);
+    window.setTimeout(() => burst(innerWidth*.34, innerHeight*.58), 1450);
+    window.setTimeout(() => burst(innerWidth*.68, innerHeight*.56), 1800);
+  }
+
+  const started = performance.now();
+  function animate(now) {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const particle = particles[i];
+      particle.x += particle.vx;
+      particle.y += particle.vy;
+      particle.vy += .035;
+      particle.vx *= .992;
+      particle.vy *= .992;
+      particle.life -= 1;
+      ctx.globalAlpha = Math.max(0, particle.life / particle.maxLife);
+      ctx.fillStyle = particle.colour;
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI*2);
+      ctx.fill();
+      if (particle.life <= 0) particles.splice(i, 1);
+    }
+    ctx.globalAlpha = 1;
+    if (now - started < (reducedMotion ? 1200 : 6500) || particles.length) {
+      requestAnimationFrame(animate);
+    } else {
+      canvas.classList.remove("active");
+      message.classList.remove("visible");
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
 function unlockAchievement(id) {
   if (unlockedAchievements[id]) return;
   const achievement = achievementDefinitions.find(item => item.id === id);
@@ -906,6 +1005,11 @@ function unlockAchievement(id) {
   unlockedAchievements[id] = true;
   saveAchievements();
   renderAchievements();
+
+  const allUnlocked = achievementDefinitions.every(item => unlockedAchievements[item.id]);
+  let alreadyCelebrated = false;
+  try { alreadyCelebrated = localStorage.getItem("paguAllAchievementsCelebrated") === "true"; } catch (error) {}
+  if (allUnlocked && !alreadyCelebrated) launchAchievementFireworks();
 
   const toast = document.getElementById("achievementToast");
   const toastName = document.getElementById("achievementToastName");
