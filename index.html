@@ -252,6 +252,120 @@ footer p { color:#e4defb; line-height:1.8; max-width:600px; margin:auto; }
   }
 }
 
+/* ACHIEVEMENTS */
+
+.achievements-section {
+  max-width:900px;
+  margin:20px auto 65px;
+  padding:20px;
+  text-align:center;
+}
+
+.achievements-section h2 {
+  color:var(--pink);
+  font:600 clamp(27px,5vw,36px) 'Playfair Display',serif;
+  margin-bottom:10px;
+}
+
+.achievements-intro {
+  color:#ded9f8;
+  line-height:1.7;
+  margin:0 auto 18px;
+}
+
+.achievement-progress {
+  color:#f3d5e5;
+  font-weight:700;
+  letter-spacing:1px;
+  margin-bottom:10px;
+}
+
+.achievement-progress-track {
+  height:8px;
+  max-width:420px;
+  margin:0 auto 25px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#ffffff20;
+}
+
+.achievement-progress-fill {
+  width:0%;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,var(--pink),var(--purple));
+  transition:width .4s ease;
+}
+
+.achievement-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px;
+  max-width:760px;
+  margin:0 auto;
+}
+
+.achievement-card {
+  min-height:135px;
+  padding:18px 14px;
+  border:1px solid #ffffff35;
+  border-radius:18px;
+  background:linear-gradient(145deg,#ffffff14,#ffffff08);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  transition:transform .25s,border-color .25s,background .25s;
+}
+
+.achievement-card.unlocked {
+  border-color:#ffb6d599;
+  background:linear-gradient(145deg,#ffb6d52b,#a99be82b);
+  box-shadow:0 8px 25px #08081735;
+  animation:achievementPop .45s ease both;
+}
+
+.achievement-icon { font-size:29px; line-height:1.2; }
+.achievement-name { color:#fff1f8; font-weight:700; font-size:14px; }
+.achievement-description { color:#d9d3f2; font-size:12px; line-height:1.5; }
+.achievement-card.locked .achievement-icon { filter:grayscale(1); opacity:.45; }
+.achievement-card.locked .achievement-name { color:#bcb5d3; }
+.achievement-card.locked .achievement-description { color:#8f89a9; }
+
+@keyframes achievementPop {
+  0% { transform:scale(.92); }
+  65% { transform:scale(1.04); }
+  100% { transform:scale(1); }
+}
+
+.achievement-toast {
+  position:fixed;
+  z-index:1200;
+  top:22px;
+  left:50%;
+  width:min(390px,calc(100vw - 30px));
+  padding:15px 18px;
+  border:1px solid #ffb6d599;
+  border-radius:17px;
+  background:linear-gradient(135deg,#40365f,#29254c);
+  box-shadow:0 14px 40px #08081799;
+  color:white;
+  text-align:center;
+  opacity:0;
+  pointer-events:none;
+  transform:translate(-50%,-18px);
+  transition:opacity .3s,transform .3s;
+}
+
+.achievement-toast.visible { opacity:1; transform:translate(-50%,0); }
+.achievement-toast strong { display:block; color:var(--pink); margin-top:3px; }
+
+@media(max-width:560px) {
+  .achievements-section { padding:14px; }
+  .achievement-grid { grid-template-columns:1fr; }
+}
+
 /* VIRTUAL PENGUIN PET */
 
 .virtual-penguin-section {
@@ -656,6 +770,20 @@ footer p { color:#e4defb; line-height:1.8; max-width:600px; margin:auto; }
   </div>
 </section>
 
+<section class="achievements-section" id="achievementsSection">
+  <h2>Our Little Achievements ♡</h2>
+  <p class="achievements-intro">A few little surprises to discover as you explore. Some secrets are waiting to be found...</p>
+  <div class="achievement-progress" id="achievementProgress">0 / 10 discovered</div>
+  <div class="achievement-progress-track" aria-hidden="true">
+    <div class="achievement-progress-fill" id="achievementProgressFill"></div>
+  </div>
+  <div class="achievement-grid" id="achievementGrid" aria-live="polite"></div>
+</section>
+
+<div class="achievement-toast" id="achievementToast" role="status" aria-live="polite">
+  Achievement unlocked!<strong id="achievementToastName"></strong>
+</div>
+
 <footer>
   <h2>And one more thing...</h2>
   <p>
@@ -708,6 +836,101 @@ const reasons = [
   "You're my favourite person to annoy and be annoyed by.",
   "Most importantly, I love you simply because you're YOU."
 ];
+
+// ACHIEVEMENTS — TITLES AND DESCRIPTIONS STAY SECRET UNTIL UNLOCKED
+
+const achievementDefinitions = [
+  { id:"allReasons", icon:"💌", title:"25 Reasons, 25 Smiles", description:"Open all 25 reason cards at least once." },
+  { id:"dateNight", icon:"🌙", title:"Date Night Decided", description:"Choose one of the date-night activities." },
+  { id:"hatch", icon:"🐣", title:"A New Little Friend", description:"Hatch Polly from the egg." },
+  { id:"cuddle", icon:"🫂", title:"Cuddle Bug", description:"Give Polly a cuddle." },
+  { id:"feed", icon:"🐟", title:"Fish Feast", description:"Feed Polly some fish." },
+  { id:"play", icon:"✨", title:"Playtime!", description:"Play with Polly." },
+  { id:"love100", icon:"💗", title:"Full of Love", description:"Reach 100% Love." },
+  { id:"food100", icon:"🐠", title:"Happy Tummy", description:"Reach 100% Food." },
+  { id:"happiness100", icon:"🌟", title:"Pure Happiness", description:"Reach 100% Happiness." },
+  { id:"perfectPenguin", icon:"👑", title:"The Perfect Penguin Parent", description:"Get all three of Polly's bars to 100% at the same time." }
+];
+
+const achievementStorageKey = "paguAchievements";
+const visitedReasonsStorageKey = "paguVisitedReasons";
+let unlockedAchievements = {};
+let visitedReasons = new Set();
+let achievementToastTimer;
+
+try {
+  const savedAchievements = JSON.parse(localStorage.getItem(achievementStorageKey) || "{}");
+  if (savedAchievements && typeof savedAchievements === "object") unlockedAchievements = savedAchievements;
+  const savedVisitedReasons = JSON.parse(localStorage.getItem(visitedReasonsStorageKey) || "[]");
+  if (Array.isArray(savedVisitedReasons)) visitedReasons = new Set(savedVisitedReasons);
+} catch (error) {
+  // Achievements still work for this visit if browser storage is unavailable.
+}
+
+function saveAchievements() {
+  try {
+    localStorage.setItem(achievementStorageKey, JSON.stringify(unlockedAchievements));
+    localStorage.setItem(visitedReasonsStorageKey, JSON.stringify([...visitedReasons]));
+  } catch (error) {
+    // Keep the current-session achievements working if storage is unavailable.
+  }
+}
+
+function renderAchievements() {
+  const grid = document.getElementById("achievementGrid");
+  const progressLabel = document.getElementById("achievementProgress");
+  const progressFill = document.getElementById("achievementProgressFill");
+  if (!grid || !progressLabel || !progressFill) return;
+
+  const unlockedCount = achievementDefinitions.filter(item => unlockedAchievements[item.id]).length;
+  progressLabel.textContent = `${unlockedCount} / ${achievementDefinitions.length} discovered`;
+  progressFill.style.width = `${(unlockedCount / achievementDefinitions.length) * 100}%`;
+
+  grid.innerHTML = achievementDefinitions.map(item => {
+    const unlocked = Boolean(unlockedAchievements[item.id]);
+    return `
+      <article class="achievement-card ${unlocked ? "unlocked" : "locked"}">
+        <div class="achievement-icon" aria-hidden="true">${unlocked ? item.icon : "🔒"}</div>
+        <div class="achievement-name">${unlocked ? item.title : "Undiscovered achievement"}</div>
+        <p class="achievement-description">${unlocked ? item.description : "A little secret is waiting to be discovered..."}</p>
+      </article>
+    `;
+  }).join("");
+}
+
+function unlockAchievement(id) {
+  if (unlockedAchievements[id]) return;
+  const achievement = achievementDefinitions.find(item => item.id === id);
+  if (!achievement) return;
+
+  unlockedAchievements[id] = true;
+  saveAchievements();
+  renderAchievements();
+
+  const toast = document.getElementById("achievementToast");
+  const toastName = document.getElementById("achievementToastName");
+  if (toast && toastName) {
+    toastName.textContent = `${achievement.icon} ${achievement.title}`;
+    toast.classList.add("visible");
+    window.clearTimeout(achievementToastTimer);
+    achievementToastTimer = window.setTimeout(() => toast.classList.remove("visible"), 3600);
+  }
+}
+
+function checkPerfectPenguinAchievement() {
+  if (penguinStats.love === 100 && penguinStats.food === 100 && penguinStats.happiness === 100) {
+    unlockAchievement("perfectPenguin");
+  }
+}
+
+function recordReasonOpened() {
+  visitedReasons.add(current);
+  saveAchievements();
+  if (visitedReasons.size >= reasons.length) unlockAchievement("allReasons");
+}
+
+// Draw the locked achievements immediately; names remain hidden until unlocked.
+renderAchievements();
 
 // PUDGY PENGUIN GIFS
 
@@ -765,7 +988,9 @@ const dots = document.getElementById("dots");
 // FLIP CARD
 
 function flipCard() {
+  const isOpening = !card.classList.contains("flipped");
   card.classList.toggle("flipped");
+  if (isOpening) recordReasonOpened();
 }
 
 card.addEventListener("click", flipCard);
@@ -1153,6 +1378,7 @@ function movieTime() {
 
 document.querySelectorAll("[data-date]").forEach(button => {
   button.addEventListener("click", () => {
+    unlockAchievement("dateNight");
     const choice = button.dataset.date;
 
     if (choice === "games") {
@@ -1294,6 +1520,11 @@ function changePenguinStat(stat, amount) {
     penguinStats[stat] + amount
   );
 
+  if (penguinStats[stat] === 100) {
+    unlockAchievement(`${stat}100`);
+  }
+  checkPerfectPenguinAchievement();
+
   // Reset the timer after caring for Polly.
   lastPenguinUpdate = Date.now();
 
@@ -1323,6 +1554,7 @@ function hatchPenguin() {
     eggButton.style.display = "none";
 
     showHatchedPenguin();
+    unlockAchievement("hatch");
 
     petMessage.textContent =
       "You hatched a little penguin! Give your new friend some love ♡";
@@ -1353,6 +1585,7 @@ petActions.addEventListener("click", event => {
   const action = actionButton.dataset.petAction;
 
   if (action === "cuddle") {
+    unlockAchievement("cuddle");
     changePenguinStat("love", 10);
 
     petMessage.textContent =
@@ -1361,6 +1594,7 @@ petActions.addEventListener("click", event => {
     petHearts.textContent = "♥ ♥ ♥";
 
   } else if (action === "feed") {
+    unlockAchievement("feed");
     changePenguinStat("food", 10);
 
     petMessage.textContent =
@@ -1369,6 +1603,7 @@ petActions.addEventListener("click", event => {
     petHearts.textContent = "♡ 🐟 ♡";
 
   } else if (action === "play") {
+    unlockAchievement("play");
     changePenguinStat("happiness", 10);
 
     petMessage.textContent =
@@ -1423,6 +1658,12 @@ try {
 } catch (error) {
   // If storage is unavailable, the penguin still works for this visit.
 }
+
+// CHECK WHETHER RESTORED STATS ALREADY MEET THE 100% ACHIEVEMENTS
+["love", "food", "happiness"].forEach(stat => {
+  if (penguinStats[stat] === 100) unlockAchievement(`${stat}100`);
+});
+checkPerfectPenguinAchievement();
 
 // CHECK FOR DECAY WHILE THE WEBSITE IS OPEN
 
